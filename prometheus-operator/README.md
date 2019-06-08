@@ -4,6 +4,8 @@
 
 详情请参考我的个人博客地址： http://www.mydlq.club/article/10/
 
+随手点个 Star，Thanks~
+
 ## 部署步骤：
 
 ### 一、创建一个名称为 fast 的 StorageClass。
@@ -158,6 +160,7 @@ prometheus-operator-5d6f6f5d68-mb88p   1/1     Running   0
 ![](http://ww1.sinaimg.cn/large/007vhU0ely1g3tcklnr5jj30t60c5t8r.jpg)
 
 ![](http://ww1.sinaimg.cn/large/007vhU0ely1g3tckfdzddj30t60uh75l.jpg)
+
 ### 2、查看 Grafana
 
 打开地址： http://192.168.2.11:32102 查看 Grafana 图表，看其 Kubernetes 集群是否能正常显示。
