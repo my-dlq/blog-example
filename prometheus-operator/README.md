@@ -10,6 +10,8 @@
 
 ### 一、创建一个名称为 fast 的 StorageClass。
 
+由于部署文件中 Prometheus 是 StatefulSet 模式部署的，需要持久化提前创建一个 StorageClass
+
 > 注意，由于存储类型的不同，StorageClass 配置也不一样，这里用的是 GlusterFS 存储,例如NFS等配置请自行查找。
 
 ```yaml
@@ -27,6 +29,8 @@ parameters:
 ```
 
 ### 二、创建 Grafana PVC
+
+Grafana 是 Deployment 部署方式部署，提前创建好 PVC
 
 ```yaml
 kind: PersistentVolumeClaim
