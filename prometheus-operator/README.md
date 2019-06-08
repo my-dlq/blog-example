@@ -6,7 +6,7 @@
 
 ## 部署步骤：
 
-### 1、创建一个名称为 fast 的 StorageClass。
+### 一、创建一个名称为 fast 的 StorageClass。
 
 > 注意，由于存储类型的不同，StorageClass 配置也不一样，这里用的是 GlusterFS 存储,例如NFS等配置请自行查找。
 
@@ -24,7 +24,7 @@ parameters:
   volumetype: "none" 
 ```
 
-### 2、创建 Grafana PVC
+### 二、创建 Grafana PVC
 
 ```yaml
 kind: PersistentVolumeClaim
@@ -41,7 +41,7 @@ spec:
       storage: 5Gi
 ```
 
-### 3、部署前各节点提前下载镜像
+### 三、部署前各节点提前下载镜像
 
 为了保证服务启动速度，所以最好部署节点提前下载所需镜像。
 
@@ -58,7 +58,7 @@ docker pull registry.aliyuncs.com/google_containers/addon-resizer:1.8.4
 docker pull quay-mirror.qiniu.com/prometheus/prometheus:v2.7.2
 ```
 
-### 4、更改 kubernetes 配置
+### 四、更改 kubernetes 配置
 
 由于 Kubernetes 集群是由 kubeadm 搭建的，其中 kube-scheduler 默认绑定 IP 是 127.0.0.1 地址。Prometheus Operator 是通过节点 IP 去访问，所以 我们将 kube-scheduler 绑定的地址更改成 0.0.0.0。
 
@@ -82,7 +82,7 @@ spec:
 ......
 ```
 
-### 5、安装Prometheus Operator
+### 五、安装Prometheus Operator
 
 ### 1、下载该部署文件
 
@@ -149,7 +149,7 @@ prometheus-k8s-1                       3/3     Running   0
 prometheus-operator-5d6f6f5d68-mb88p   1/1     Running   0  
 ```
 
-## 6、查看 Prometheus & Grafana
+## 六、查看 Prometheus & Grafana
 
 ### 1、查看 Prometheus
 
