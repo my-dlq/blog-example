@@ -1,0 +1,40 @@
+# traefik.toml
+debug = true
+InsecureSkipVerify = true
+defaultEntryPoints = ["http","https"]
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+    compress = true
+  [entryPoints.https]
+    address = ":443"
+    compress = true
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+        CertFile = "/ssl/tls.crt"
+        KeyFile = "/ssl/tls.key"
+  [entryPoints.traefik]
+    address = ":8080"
+[kubernetes]
+[traefikLog]
+  format = "json"
+  #filePath = "/data/traefik.log"
+[accessLog]
+  #filePath = "/data/access.log"
+  format = "json"
+  [accessLog.filters]
+    retryAttempts = true
+    minDuration = "10ms"
+  [accessLog.fields]
+    defaultMode = "keep"
+    [accessLog.fields.names]
+    "ClientUsername" = "drop"
+    [accessLog.fields.headers]
+      defaultMode = "keep"
+      [accessLog.fields.headers.names]
+        "User-Agent" = "redact"
+        "Authorization" = "drop"
+        "Content-Type" = "keep"
+[api]
+  entryPoint = "traefik"
+  dashboard = true

@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: traefik-dashboard
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: traefik                        #指定用 traefik 控制器
+    traefik.frontend.rule.type: PathPrefixStrip                 #跳转后端时忽略 path
+    traefik.ingress.kubernetes.io/frontend-entry-points: http   #指定只能以 http，方式访问，也可以设置 https
+spec:
+  rules:
+  - host: cloud.mydlq.club                                      #设置 host
+    http:
+      paths:
+      - path: /traefik                                          #设置 path
+        backend:
+          serviceName: traefik-ingress-service                  #设置 service 名称，和要跳转的 service 一致
+          servicePort: 8080                                     #设置 service 端口
