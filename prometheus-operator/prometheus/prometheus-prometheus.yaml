@@ -30,3 +30,10 @@ spec:
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
   version: v2.7.2
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: prometheus-data-db
+        resources:
+          requests:
+            storage: 5Gi
