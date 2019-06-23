@@ -1,0 +1,21 @@
+server:
+  port: 8080
+    
+spring:
+  application:
+    name: springboot-admin-k8s
+  cloud:
+    kubernetes:
+      discovery:
+        #PrimaryPortName: 8081
+        primaryPortName: management
+        serviceLabels:
+          admin: enabled
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #这里设置暴露出所有数据，如果只想暴露出 Prometheus 数据，可以设置为 "prometheus"
+  server:
+    port: 8081    #指定监控数据端口为8081
