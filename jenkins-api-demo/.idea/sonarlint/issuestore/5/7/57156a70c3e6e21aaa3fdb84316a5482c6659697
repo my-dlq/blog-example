@@ -1,0 +1,75 @@
+
+esquid:S1192'"IDefine a constant instead of duplicating this literal "test-job" 9 times.(œÀšßýÿÿÿÿ
+Qsquid:S1068"5Remove this unused "jenkinsHttpClient" private field.(™—êµùÿÿÿÿ
+hsquid:CommentedOutCodeLineŠ"<This block of commented-out lines of code should be removed.(ŒÀ«‰ÿÿÿÿÿ
+hsquid:CommentedOutCodeLineŒ"<This block of commented-out lines of code should be removed.(É¨ÍÜùÿÿÿÿ
+T
+squid:S106a"9Replace this use of System.out or System.err by a logger.(˜Ð¥‚üÿÿÿÿ
+N
+squid:S106q"9Replace this use of System.out or System.err by a logger.(àÙQ
+T
+squid:S106u"9Replace this use of System.out or System.err by a logger.(˜Ð¥‚üÿÿÿÿ
+U
+squid:S106†"9Replace this use of System.out or System.err by a logger.(®¡éùÿÿÿÿÿ
+U
+squid:S106ˆ"9Replace this use of System.out or System.err by a logger.(˜Ð¥‚üÿÿÿÿ
+P
+squid:S106œ"9Replace this use of System.out or System.err by a logger.(’Ò²€
+P
+squid:S106ž"9Replace this use of System.out or System.err by a logger.(¶ˆé
+U
+squid:S106 "9Replace this use of System.out or System.err by a logger.(˜Ð¥‚üÿÿÿÿ
+P
+squid:S106¢"9Replace this use of System.out or System.err by a logger.(æ¼ü©
+U
+squid:S106¤"9Replace this use of System.out or System.err by a logger.(±ÙÏ‚ýÿÿÿÿ
+P
+squid:S106¦"9Replace this use of System.out or System.err by a logger.(ô’š²
+P
+squid:S106¨"9Replace this use of System.out or System.err by a logger.(¸ž¦¢
+P
+squid:S106¬"9Replace this use of System.out or System.err by a logger.(ÃŒžÙ
+U
+squid:S106­"9Replace this use of System.out or System.err by a logger.(ÎæÒúÿÿÿÿ
+U
+squid:S106®"9Replace this use of System.out or System.err by a logger.(¸¢Ðµùÿÿÿÿ
+P
+squid:S106¯"9Replace this use of System.out or System.err by a logger.(›Ü÷¬
+P
+squid:S106°"9Replace this use of System.out or System.err by a logger.(ØýÞÍ
+U
+squid:S106±"9Replace this use of System.out or System.err by a logger.(ºÅ»…úÿÿÿÿ
+U
+squid:S106Ä"9Replace this use of System.out or System.err by a logger.(¿ÓÓŸøÿÿÿÿ
+U
+squid:S106Æ"9Replace this use of System.out or System.err by a logger.(¶Ðµüÿÿÿÿ
+U
+squid:S106Ë"9Replace this use of System.out or System.err by a logger.(›¡ÔÐÿÿÿÿÿ
+U
+squid:S106Í"9Replace this use of System.out or System.err by a logger.(ë÷•ƒøÿÿÿÿ
+U
+squid:S106Ï"9Replace this use of System.out or System.err by a logger.(žë‡¸ûÿÿÿÿ
+P
+squid:S106ß"9Replace this use of System.out or System.err by a logger.(£»²°
+U
+squid:S106å"9Replace this use of System.out or System.err by a logger.(å¡Ü»þÿÿÿÿ
+Ksquid:S1481"/Remove this unused "jenkinsApi" local variable.(‰­òûÿÿÿÿ
+Jsquid:S1481)".Remove this unused "lastBuild" local variable.(çò¸¯üÿÿÿÿ
+Osquid:S1481+"8Remove this unused "lastSuccessfulBuild" local variable.(Ì°­”
+Psquid:S1481-"4Remove this unused "lastFailedBuild" local variable.(Ç£ÜÉÿÿÿÿÿ
+Ssquid:S1481/"7Remove this unused "lastCompletedBuild" local variable.(’Óã¦üÿÿÿÿ
+Psquid:S14811"4Remove this unused "lastStableBuild" local variable.(€ïé¨ùÿÿÿÿ
+Rsquid:S14813"6Remove this unused "lastUnstableBuild" local variable.(¢ì²ƒøÿÿÿÿ
+Qsquid:S14815":Remove this unused "lastUnsuccessfulBuild" local variable.(„üéÒ
+Ksquid:S1481C"/Remove this unused "firstBuild" local variable.(å®Üåøÿÿÿÿ
+Lsquid:S1481Q"0Remove this unused "numberBuild" local variable.(ý¸÷»øÿÿÿÿ
+^squid:S2142ê"FEither re-interrupt this method or rethrow the "InterruptedException".(òž¶È
+?squid:S11487"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148E"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148S"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148d"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148x"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+@squid:S1148Ž"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+@squid:S1148´"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+@squid:S1148Ñ"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+@squid:S1148ë"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
