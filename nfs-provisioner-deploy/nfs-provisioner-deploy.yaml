@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nfs-client-provisioner
+  labels:
+    app: nfs-client-provisioner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate      #---设置升级策略为删除再创建(默认为滚动更新)
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+        - name: nfs-client-provisioner
+          #---由于quay.io仓库国内被墙，所以替换成七牛云的仓库
+          image: quay-mirror.qiniu.com/external_storage/nfs-client-provisioner:latest 
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: nfs-client     #--- nfs-provisioner的名称，以后设置的storageclass要和这个保持一致
+            - name: NFS_SERVER
+              value: 192.168.2.11   #---NFS服务器地址，和 valumes 保持一致
+            - name: NFS_PATH
+              value: /nfs/data      #---NFS服务器目录，和 valumes 保持一致
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: 192.168.2.11    #---NFS服务器地址
+            path: /nfs/data         #---NFS服务器目录

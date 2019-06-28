@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-storage
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true" #---设置为默认的storageclass
+provisioner: nfs-client    #---动态卷分配者名称，必须和上面创建的"provisioner"变量中设置的Name一致
+parameters:
+  archiveOnDelete: "true"  #---设置为"false"时删除PVC不会保留数据,"true"则保留数据
