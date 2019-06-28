@@ -4,7 +4,7 @@ metadata:
   name: grafana
   namespace: monitoring  #---指定namespace为monitoring
 spec:
-  storageClassName: fass #----指定StorageClass为上面创建的fast
+  storageClassName: fast #----指定StorageClass为上面创建的fast
   accessModes:
     - ReadWriteOnce
   resources:
