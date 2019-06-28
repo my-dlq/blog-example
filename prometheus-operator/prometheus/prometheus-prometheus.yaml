@@ -33,7 +33,7 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
-        storageClassName: prometheus-data-db
+        storageClassName: fast
         resources:
           requests:
-            storage: 5Gi
+            storage: 10Gi

@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana
+  namespace: monitoring  #---指定namespace为monitoring
+spec:
+  storageClassName: fass #----指定StorageClass为上面创建的fast
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
