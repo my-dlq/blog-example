@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-admin-k8s
+  labels:
+    app: springboot-admin-k8s
+    admin: enabled            #---设置此标签，表示此应用被 Springboot Admin 服务发现
+  annotations:
+spec:
+  type: NodePort              #---通过NodePort方式暴露端口，方便外界访问
+  ports:
+    - name: server            #---服务端口名，用于访问监控 UI
+      nodePort: 30080
+      port: 8080             
+      targetPort: 8080
+    - name: management        #---指定监控端口名，表示此应用被 Springboot Admin 服务发现 
+      nodePort: 30081
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: springboot-admin-k8s
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-admin-k8s
+  labels:
+    app: springboot-admin-k8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-admin-k8s
+  template:
+    metadata:
+      labels:
+        app: springboot-admin-k8s
+    spec:
+      serviceAccountName: springboot-admin-k8s
+      containers:
+      - name: springboot-admin-k8s
+        image: mydlqclub/springboot-admin-k8s:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: server
+        - containerPort: 8081
+          name: management
+        resources: 
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 256Mi
