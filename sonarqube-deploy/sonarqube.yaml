@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarqube
+  labels:
+    app: sonarqube
+spec:
+  type: NodePort            #指定 NodePort 端口
+  ports:
+    - name: sonarqube
+      port: 9000
+      targetPort: 9000
+      nodePort: 30900       #指定 NodePort 端口
+      protocol: TCP
+  selector:
+    app: sonarqube
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube
+  labels:
+    app: sonarqube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarqube
+  template:
+    metadata:
+      labels:
+        app: sonarqube
+    spec:
+      initContainers:               #设置初始化镜像，执行 system 命令
+      - name: init-sysctl
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["sysctl", "-w", "vm.max_map_count=262144"]  #必须设置vm.max_map_count这个值调整内存权限，否则启动可能报错
+        securityContext:
+          privileged: true          #赋予权限能执行系统命令
+      containers:
+      - name: sonarqube
+        image: "sonarqube:7.9-community"
+        ports:
+        - containerPort: 9000
+        env:
+        - name: SONARQUBE_JDBC_USERNAME
+          value: "sonarUser"        #引用 PostgreSQL 配置中设置的用户名
+        - name: SONARQUBE_JDBC_PASSWORD
+          value: "123456"           #引用 PostgreSQL 配置中设置的密码
+        - name: SONARQUBE_JDBC_URL
+          value: "jdbc:postgresql://postgres:5432/sonarDB"   #指定 PostgreSQL 在 Kubernetes 中的地址
+        livenessProbe:
+          httpGet:
+            path: /sessions/new
+            port: 9000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /sessions/new
+            port: 9000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          failureThreshold: 6
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
+          requests:
+            cpu: 1000m
+            memory: 1024Mi
+        volumeMounts:
+        - mountPath: /opt/sonarqube/conf
+          name: sonarqube
+          subPath: conf
+        - mountPath: /opt/sonarqube/data
+          name: sonarqube
+          subPath: data
+        - mountPath: /opt/sonarqube/extensions
+          name: sonarqube
+          subPath: extensions
+      volumes:
+      - name: sonarqube
+        persistentVolumeClaim:
+          claimName: sonarqube    #绑定上面创建的 PVC
