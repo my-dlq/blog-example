@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonatype-nexus
+  labels:
+    app: sonatype-nexus
+spec:
+  type: NodePort
+  ports:
+  - name: sonatype-nexus
+    port: 8081
+    targetPort: 8081
+    nodePort: 30881     #设置NodePort端口值
+    protocol: TCP
+  selector:
+    app: sonatype-nexus
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonatype-nexus
+  labels:
+    app: sonatype-nexus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonatype-nexus
+  template:
+    metadata:
+      labels:
+        app: sonatype-nexus
+    spec:
+      containers:
+      - name: sonatype-nexus
+        image: sonatype/nexus3:3.17.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: server
+          containerPort: 8081
+        livenessProbe:          #存活探针
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          failureThreshold: 6
+        readinessProbe:         #就绪探针
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          failureThreshold: 6
+        env:
+        - name: INSTALL4J_ADD_VM_PARAMS  #设置分配资源大小，一定要等于或小于resources设置的值
+          value: "
+                  -Xms1200M 
+                  -Xmx1200M 
+                  -XX:MaxDirectMemorySize=2G 
+                  -XX:+UnlockExperimentalVMOptions 
+                  -XX:+UseCGroupMemoryLimitForHeap
+                 "
+        resources:      #资源限制
+          limits:
+            cpu: 1000m  #推荐设置为4000m以上cpu，由于资源有限，所以都是设置的最小值
+            memory: 2048Mi   
+          requests:
+            cpu: 500m
+            memory: 1024Mi
+        volumeMounts:
+        - name: sonatype-nexus-data
+          mountPath: /nexus-data
+      volumes:
+      - name: sonatype-nexus-data
+        persistentVolumeClaim:
+          claimName: sonatype-nexus     #设置为上面创建的 PVC
