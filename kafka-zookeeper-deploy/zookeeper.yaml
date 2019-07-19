@@ -1,0 +1,163 @@
+#部署 Service Headless，用于Zookeeper间相互通信
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper-headless
+  labels:
+    app: zookeeper
+spec:
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
+  ports:
+  - name: client
+    port: 2181
+    targetPort: client
+  - name: follower
+    port: 2888
+    targetPort: follower
+  - name: election
+    port: 3888
+    targetPort: election
+  selector:
+    app: zookeeper
+---
+#部署 Service，用于外部访问 Zookeeper
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper
+  labels:
+    app: zookeeper
+spec:
+  type: ClusterIP
+  ports:
+  - name: client
+    port: 2181
+    targetPort: client
+  - name: follower
+    port: 2888
+    targetPort: follower
+  - name: election
+    port: 3888
+    targetPort: election
+  selector:
+    app: zookeeper
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: zookeeper
+  labels:
+    app: zookeeper
+spec:
+  serviceName: zookeeper-headless
+  replicas: 3
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      name: zookeeper
+      labels:
+        app: zookeeper
+    spec:      
+      securityContext:
+        fsGroup: 1001
+      containers:
+      - name: zookeeper
+        image: docker.io/bitnami/zookeeper:3.4.14-debian-9-r25
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 1001
+        command:
+         - bash
+         - -ec
+         - |
+            # Execute entrypoint as usual after obtaining ZOO_SERVER_ID based on POD hostname
+            HOSTNAME=`hostname -s`
+            if [[ $HOSTNAME =~ (.*)-([0-9]+)$ ]]; then
+              ORD=${BASH_REMATCH[2]}
+              export ZOO_SERVER_ID=$((ORD+1))
+            else
+              echo "Failed to get index from hostname $HOST"
+              exit 1
+            fi
+            . /opt/bitnami/base/functions
+            . /opt/bitnami/base/helpers
+            print_welcome_page
+            . /init.sh
+            nami_initialize zookeeper
+            exec tini -- /run.sh
+        resources: 
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
+        env:
+        - name: ZOO_PORT_NUMBER
+          value: "2181"
+        - name: ZOO_TICK_TIME
+          value: "2000"
+        - name: ZOO_INIT_LIMIT
+          value: "10"
+        - name: ZOO_SYNC_LIMIT
+          value: "5"
+        - name: ZOO_MAX_CLIENT_CNXNS
+          value: "60"
+        - name: ZOO_SERVERS
+          value: "
+                  zookeeper-0.zookeeper-headless:2888:3888,
+                  zookeeper-1.zookeeper-headless:2888:3888,
+                  zookeeper-2.zookeeper-headless:2888:3888
+                 "
+        - name: ZOO_ENABLE_AUTH
+          value: "no"
+        - name: ZOO_HEAP_SIZE
+          value: "1024"
+        - name: ZOO_LOG_LEVEL
+          value: "ERROR"
+        - name: ALLOW_ANONYMOUS_LOGIN
+          value: "yes"
+        ports:
+        - name: client
+          containerPort: 2181
+        - name: follower
+          containerPort: 2888
+        - name: election
+          containerPort: 3888
+        livenessProbe:
+          tcpSocket:
+            port: client
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 6
+        readinessProbe:
+          tcpSocket:
+            port: client
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 6
+        volumeMounts:
+        - name: data
+          mountPath: /bitnami/zookeeper
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        annotations:
+      spec:
+        storageClassName: nfs-storage
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi

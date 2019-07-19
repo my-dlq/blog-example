@@ -1,0 +1,125 @@
+#部署 Service Headless，用于Kafka间相互通信
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-headless
+  labels:
+    app: kafka
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - name: kafka
+    port: 9092
+    targetPort: kafka
+  selector:
+    app: kafka
+---
+#部署 Service，用于外部访问 Kafka
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  labels:
+    app: kafka
+spec:
+  type: ClusterIP
+  ports:
+  - name: kafka
+    port: 9092
+    targetPort: kafka
+  selector:
+    app: kafka
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "kafka"
+  labels:
+    app: kafka
+spec:
+  selector:
+    matchLabels:
+      app: kafka
+  serviceName: kafka-headless
+  podManagementPolicy: "Parallel"
+  replicas: 3
+  updateStrategy:
+    type: "RollingUpdate"
+  template:
+    metadata:
+      name: "kafka"
+      labels:
+        app: kafka
+    spec:      
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+      - name: kafka
+        image: "docker.io/bitnami/kafka:2.3.0-debian-9-r4"
+        imagePullPolicy: "IfNotPresent"
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
+        env:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+          value: zookeeper:2181
+        - name: KAFKA_PORT_NUMBER
+          value: "9092"
+        - name: KAFKA_CFG_LISTENERS
+          value: "PLAINTEXT://:$(KAFKA_PORT_NUMBER)"
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: 'PLAINTEXT://$(MY_POD_NAME).kafka-headless:$(KAFKA_PORT_NUMBER)'
+        - name: ALLOW_PLAINTEXT_LISTENER
+          value: "yes"
+        - name: KAFKA_HEAP_OPTS
+          value: "-Xmx512m -Xms512m"
+        - name: KAFKA_CFG_LOGS_DIRS
+          value: /opt/bitnami/kafka/data
+        - name: JMX_PORT
+          value: "9988"
+        ports:
+        - name: kafka
+          containerPort: 9092
+        livenessProbe:
+          tcpSocket:
+            port: kafka
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 2
+        readinessProbe:
+          tcpSocket:
+            port: kafka
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 6
+        volumeMounts:
+        - name: data
+          mountPath: /bitnami/kafka
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 5Gi
+        storageClassName: nfs-storage
