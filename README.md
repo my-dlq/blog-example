@@ -10,3 +10,5 @@
 - [Java 操作 Jenkins API 示例](https://github.com/my-dlq/blog-example/tree/master/jenkins-api-demo)
 - [Kubernetes 部署 SonarQube 的部署文件](https://github.com/my-dlq/blog-example/tree/master/sonarqube-deploy)
 - [Kubernetes 部署 Sonatype Nexus3 的部署文件](https://github.com/my-dlq/blog-example/tree/master/sonatype-nexus-deploy)
+- [Kubernetes 部署 DashBoard 2.0.0-beta1](https://github.com/my-dlq/blog-example/tree/master/kubernetes-dashboard2.0.0-beta1-deploy)
+
