@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-provider
+spec:
+  type: NodePort
+  ports:
+    - name: server
+      nodePort: 31001
+      port: 8080
+      targetPort: 8080
+    - name: management
+      nodePort: 31002
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: service-provider
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-provider
+  labels:
+    app: service-provider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-provider
+  template:
+    metadata:
+      name: service-provider
+      labels:
+        app: service-provider
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: service-provider
+          image: registry.cn-beijing.aliyuncs.com/mydlq/service-provider:0.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: server
+            - containerPort: 8081
+              name: management
+          resources:
+            limits:
+              memory: 1000Mi
+              cpu: 1000m
+            requests:
+              memory: 500Mi
+              cpu: 500m

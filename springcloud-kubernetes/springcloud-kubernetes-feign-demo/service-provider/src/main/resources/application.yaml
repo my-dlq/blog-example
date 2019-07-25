@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: service-provider
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"

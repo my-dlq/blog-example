@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: service-customer
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#开启 Hystrix
+feign:
+  hystrix:
+    enabled: true
