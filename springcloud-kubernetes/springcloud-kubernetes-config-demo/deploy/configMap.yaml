@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-config
+data:
+  config.booleanValue: "false"
+  config.numberValue: "1000"
+  config.stringValue: "configMap中的字符串"

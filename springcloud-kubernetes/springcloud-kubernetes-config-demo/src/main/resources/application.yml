@@ -1,0 +1,20 @@
+#配置 Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8081
+  endpoint:
+    restart:
+      enabled: true
+
+config:
+  numberValue: 1
+  stringValue: 这是在程序中的配置
+  booleanValue: "true"
+
+secret:
+  username: application
+  password: 123456

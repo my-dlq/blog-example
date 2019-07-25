@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: springcloud-kubernetes-config-demo
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: polling            #监听模式：
+                                 #    (1)、polling：从 ConfigMap 和 Secret 中定期刷新配置，检测是否进行了修改。
+                                 #    (2)、event（默认）：监视配置映射或机密的更改。任何事件都会对配置进行重新检查，如果发生更改，则会重新加载。
+        period: 5000             #刷新间隔,单位(ms)
+        strategy: refresh       #刷新模式：
+                                 #    (1)、refresh（默认）：仅注释@ConfigurationProperties或@RefreshScope重新加载的配置Bean
+                                 #    (2)、restart_context：整个Spring ApplicationContext正常重启。使用新配置重新创建Bean。
+                                 #    (3)、shutdown：关闭以激活容器的重启。使用此级别时，请确保将所有非守护程序线程的生命周期绑定到该级别，
+                                 #         并将ApplicationContext 复制控制器或副本集配置为重新启动该pod。
+        #mode: event
+        monitoring-secrets: true #是否监控 Secret 的更改来执行更新
+      config:
+        enabled: true            #启用 ConfigMap 配置功能
+        enableApi: true          #启用通过 K8S API 发现 ConfigMap 配置
+        sources:
+        - namespace: mydlqcloud  #指定 ConfigMap 名称
+          name: test-config      #指定 Namespace 名称
+      secrets:
+        enabled: true            #启用 Secret 配置功能
+        enableApi: true          #启用通过 K8S API 发现 Secret 配置
+        namespace: mydlqcloud    #指定 Namespace 名称
+        name: test-secret        #指定 Secret 名称，引入对应 Secret 配置
+        labels:                  #设置 Label 标签，引入对应 Label 的配置
+          secret: enabled        #自定义的 Label
