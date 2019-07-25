@@ -1,4 +1,4 @@
-package club.mydlq.admin.discovery;
+package club.mydlq.k8s.discovery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/discovery")
 public class ServiceController {
 
     @Autowired
@@ -15,6 +14,11 @@ public class ServiceController {
     @GetMapping("/service")
     public List<String> getServiceList(){
         return discoveryClient.getServices();
+    }
+
+    @GetMapping("/instance")
+    public Object getInstance(@RequestParam("name") String name){
+        return discoveryClient.getInstances(name);
     }
 
 }

@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  application:
+    name: springcloud-kubernetes-discovery-demo
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: true
+        #---------------设置端口名过滤服务实例---------------------------
+        #primaryPortName: server
+
+        #---------------设置安全端口------------------------------------
+        #knownSecurePorts: 443,4443,6443,8443
+
+        #---------------设置通过 Label 过滤服务实例----------------------
+        #serviceLabels:
+        #  group: A
+
+        #---------------设置获取 Metadata 后添加某些前缀------------------
+        #metadata:
+        #  addLabels: true
+        #  labelsPrefix: aaa
+        #  addAnnotations: true
+        #  annotationsPrefix: bbb
+        #  addPorts: true
+        #  portsPrefix: ccc
+
+        #---------------在 filter 参数设置 SpringEL 表达式过滤服务列表------
+        #filter: "metadata.name != 'service-A'"
+        #filter: "spec.type == 'NodePort'"
+        #filter: "spec.ports.size() == 1 or spec.ports.size() == 2"
