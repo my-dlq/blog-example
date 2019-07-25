@@ -14,3 +14,7 @@
 - [Kubernetes 部署 DashBoard 2.0.0-beta2 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes-dashboard2.0.0-beta2-deploy)
 - [Kubernetes 部署 Kafka & Zookeeper & Kafka-Manager 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kafka-zookeeper-deploy)
 - [SpringCloud Kubernetes Discovery 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-discovery-demo)
+- [SpringCloud Kubernetes Config 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-config-demo)
+- [Kubernetes 环境 SpringCloud Feign 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-feign-demo)
+
+
