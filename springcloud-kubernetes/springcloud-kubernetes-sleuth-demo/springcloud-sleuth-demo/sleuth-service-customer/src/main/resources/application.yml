@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: sleuth-service-customer
+  sleuth:
+    sampler:
+      probability: 1.0    #采集率,最大1.0(百分百采集),默认0.1(百分之十采集)
+  zipkin:
+    #base-url: http://192.168.2.11:30190    #Zipkin Server地址,这里使用了Kafka所以被注掉
+    sender:
+      type: kafka     #指定发送到kafka,还可以指定Rabbit、Web
+    service:
+      name: ${spring.application.name} #Zipkin链路日志中收集的服务名称
+  kafka:
+    bootstrap-servers: kafka.mydlqcloud:9092  #Kubernetes中Kakfa地址,当然也可以指定Kubernetes集群外的Kafka地址
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"

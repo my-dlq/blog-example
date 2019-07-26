@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin
+  labels:
+    app: zipkin
+spec:
+  type: NodePort        #指定为 NodePort 方式暴露出口
+  ports:
+    - name: server
+      port: 9411
+      targetPort: 9411
+      nodePort: 30190   #指定 Nodeport 端口
+      protocol: TCP
+  selector:
+    app: zipkin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin
+  labels:
+    name: zipkin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin
+  template:
+    metadata:
+      labels:
+        app: zipkin
+    spec:
+      containers:
+      - name: zipkin
+        image: openzipkin/zipkin:2.15
+        ports:
+        - containerPort: 9411
+        env:
+        - name: JAVA_OPTS
+          value: "
+                  -Xms512m -Xmx512m 
+                  -Dlogging.level.zipkin=DEBUG 
+                  -Dlogging.level.zipkin2=DEBUG 
+                  -Duser.timezone=Asia/Shanghai
+                  "
+        - name: STORAGE_TYPE
+          value: "elasticsearch"   #设置数据存储在ES中
+        - name: ES_HOSTS        
+          value: "elasticsearch-client.mydlqcloud:9200"   #ES地址
+        - name: ES_INDEX           #设置ES中存储的zipkin索引名称
+          value: "zipkin"
+        - name: ES_INDEX_REPLICAS  #ES索引副本数
+          value: "1"
+        - name: ES_INDEX_SHARDS    #ES分片数量
+          value: "3"
+        #- name: ES_USERNAME       #如果ES启用x-pack,需要设置用户名、密码
+        #  value: ""
+        #- name: ES_PASSWORD
+        #  value: ""
+        - name: KAFKA_BOOTSTRAP_SERVERS #Kafka 地址
+          value: "kafka.mydlqcloud:9092"
+        - name: KAFKA_TOPIC             #Kafka Topic名称,默认为"zipkin"
+          value: "zipkin"
+        - name: KAFKA_GROUP_ID          #Kafka 组名,默认为"zipkin"
+          value: "zipkin"       
+        - name: KAFKA_STREAMS           #消耗Topic的线程数,默认为1
+          value: "1"     
+        resources: 
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 256Mi

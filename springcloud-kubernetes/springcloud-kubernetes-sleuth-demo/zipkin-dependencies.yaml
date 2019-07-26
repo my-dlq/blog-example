@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin-dependencies
+  labels:
+    name: zipkin-dependencies
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin-dependencies
+  template:
+    metadata:
+      labels:
+        app: zipkin-dependencies
+    spec:
+      serviceAccountName: jenkins-admin
+      containers:
+      - name: zipkin
+        image: openzipkin/zipkin-dependencies:2.3.1
+        ports:
+        - containerPort: 80
+        command: ["sh","-c","crond -f"]         
+        env:
+        - name: JAVA_OPTS
+          value: "-Xms512m -Xmx512m"
+        - name: STORAGE_TYPE
+          value: "elasticsearch"
+        - name: ES_HOSTS
+          value: "elasticsearch-client.mydlqcloud:9200"
+        - name: ES_INDEX        #设置ES中存储的zipkin索引名称
+          value: "zipkin"
+        #- name: ES_USERNAME    #如果ES启用x-pack,需要设置用户名、密码
+        #  value: ""
+        #- name: ES_PASSWORD
+        #  value: ""
+        resources: 
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 256Mi
