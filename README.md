@@ -16,5 +16,6 @@
 - [SpringCloud Kubernetes Discovery 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-discovery-demo)
 - [SpringCloud Kubernetes Config 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-config-demo)
 - [Kubernetes 环境 SpringCloud Feign 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-feign-demo)
+- [Kubernetes 环境 SpringCloud 链路追踪、Zipkin 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-sleuth-demo)
 
 
