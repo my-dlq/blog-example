@@ -33,7 +33,7 @@ spec:
       labels:
         app: springcloud-kubernetes-discovery-demo
     spec:
-      serviceAccountName: springcloud-kubernetes-discovery-demo
+      serviceAccountName: springcloud-kubernetes
       restartPolicy: Always
       containers:
         - name: springcloud-k8s-config
