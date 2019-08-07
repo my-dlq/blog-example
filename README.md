@@ -17,5 +17,4 @@
 - [SpringCloud Kubernetes Config 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-config-demo)
 - [Kubernetes 环境 SpringCloud Feign 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-feign-demo)
 - [Kubernetes 环境 SpringCloud 链路追踪、Zipkin 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-sleuth-demo)
-
-
+- [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springboot-kafka)
