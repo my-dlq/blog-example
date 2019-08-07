@@ -34,7 +34,7 @@ spec:
       labels:
         app: springcloud-kubernetes-config-demo
     spec:
-      serviceAccountName: admin
+      serviceAccountName: springcloud-kubernetes
       restartPolicy: Always
       containers:
         - name: springcloud-kubernetes-config-demo
