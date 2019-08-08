@@ -1,53 +1,0 @@
-
-csquid:CommentedOutCodeLineœ"<This block of commented-out lines of code should be removed.(ßÓÝ¢
-csquid:CommentedOutCodeLinež"<This block of commented-out lines of code should be removed.(òÐîÔ
-hsquid:CommentedOutCodeLine "<This block of commented-out lines of code should be removed.(æúëÑûÿÿÿÿ
-bsquid:CommentedOutCodeLine¢"<This block of commented-out lines of code should be removed.(¯ÚÑ
-csquid:CommentedOutCodeLine¤"<This block of commented-out lines of code should be removed.(ŽàÕü
-csquid:CommentedOutCodeLine¦"<This block of commented-out lines of code should be removed.(èÖ©ï
-hsquid:CommentedOutCodeLine¨"<This block of commented-out lines of code should be removed.(¥·£ýÿÿÿÿ
-csquid:CommentedOutCodeLineª"<This block of commented-out lines of code should be removed.(Ážùà
-O
-squid:S106""9Replace this use of System.out or System.err by a logger.(ÝÇô±
-T
-squid:S106$"9Replace this use of System.out or System.err by a logger.( §ß±úÿÿÿÿ
-T
-squid:S106("9Replace this use of System.out or System.err by a logger.(Úå’óûÿÿÿÿ
-O
-squid:S106c"9Replace this use of System.out or System.err by a logger.(À¡þ…
-T
-squid:S106e"9Replace this use of System.out or System.err by a logger.(£ÄùÓúÿÿÿÿ
-T
-squid:S106g"9Replace this use of System.out or System.err by a logger.(ƒ“Û™ýÿÿÿÿ
-T
-squid:S106i"9Replace this use of System.out or System.err by a logger.(®Ž¨Õþÿÿÿÿ
-O
-squid:S106k"9Replace this use of System.out or System.err by a logger.(¹Áã…
-T
-squid:S106m"9Replace this use of System.out or System.err by a logger.(ÍýÉœüÿÿÿÿ
-T
-squid:S106o"9Replace this use of System.out or System.err by a logger.(Ä’ë—üÿÿÿÿ
-N
-squid:S106z"9Replace this use of System.out or System.err by a logger.(»ÄÓ8
-P
-squid:S106‡"9Replace this use of System.out or System.err by a logger.(£æÓ¿
-P
-squid:S106‰"9Replace this use of System.out or System.err by a logger.(í’¬‰
-U
-squid:S106‹"9Replace this use of System.out or System.err by a logger.(ô½°Ëýÿÿÿÿ
-U
-squid:S106"9Replace this use of System.out or System.err by a logger.(ªš«Ýúÿÿÿÿ
-U
-squid:S106"9Replace this use of System.out or System.err by a logger.(¿¼Ÿÿøÿÿÿÿ
-U
-squid:S106‘"9Replace this use of System.out or System.err by a logger.(œÈñ€úÿÿÿÿ
-Hsquid:S1481&"1Remove this unused "executorList" local variable.( Õœš
-Jsquid:S1481*"3Remove this unused "loadStatistics" local variable.(‡ªœ˜
-Lsquid:S1481,"0Remove this unused "monitorData" local variable.(ˆÚ«©øÿÿÿÿ
-Lsquid:S1481š"/Remove this unused "jenkinsApi" local variable.(‰­òûÿÿÿÿ
-?squid:S11480"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-?squid:S1148;"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-?squid:S1148F"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-?squid:S1148Q"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-?squid:S1148q"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-@squid:S1148”"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ

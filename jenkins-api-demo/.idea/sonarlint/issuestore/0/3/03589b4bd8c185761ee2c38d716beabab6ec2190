@@ -1,38 +1,0 @@
-
-fsquid:S11927"JDefine a constant instead of duplicating this literal "test-job" 11 times.(Êæ»½øÿÿÿÿ
-Qsquid:S1068"5Remove this unused "jenkinsHttpClient" private field.(™—êµùÿÿÿÿ
-O
-squid:S106q"9Replace this use of System.out or System.err by a logger.(øÄ §
-T
-squid:S106s"9Replace this use of System.out or System.err by a logger.(Ê«½ùÿÿÿÿ
-T
-squid:S106u"9Replace this use of System.out or System.err by a logger.(öúŠ§øÿÿÿÿ
-O
-squid:S106w"9Replace this use of System.out or System.err by a logger.(ä°Øë
-T
-squid:S106y"9Replace this use of System.out or System.err by a logger.(Í™¯ùÿÿÿÿ
-O
-squid:S106{"9Replace this use of System.out or System.err by a logger.(†öÖº
-N
-squid:S106}"9Replace this use of System.out or System.err by a logger.(µÈİ}
-P
-squid:S106—"9Replace this use of System.out or System.err by a logger.(øÄ §
-P
-squid:S106¦"9Replace this use of System.out or System.err by a logger.(øÄ §
-U
-squid:S106³"9Replace this use of System.out or System.err by a logger.(á±Çäûÿÿÿÿ
-Ksquid:S1481"/Remove this unused "jenkinsApi" local variable.(‰­òûÿÿÿÿ
-Esquid:S1481‰"(Remove this unused "job" local variable.(‡¼ùáúÿÿÿÿ
-?squid:S11489"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-?squid:S1148e"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-?squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148‹"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148š"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148©"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148µ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148À"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148Ó"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148á"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148ì"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148÷"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-@squid:S1148‚"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ

@@ -1,25 +1,0 @@
-
-csquid:S1192<"GDefine a constant instead of duplicating this literal "/view/" 3 times.(¼Õš¿ùÿÿÿÿ
-asquid:S1192)"JDefine a constant instead of duplicating this literal "test-view" 5 times.(ğË”Í
-hsquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(¸†áÉüÿÿÿÿ
-csquid:CommentedOutCodeLine‡"<This block of commented-out lines of code should be removed.(ÛÎú
-hsquid:CommentedOutCodeLine‰"<This block of commented-out lines of code should be removed.(Â•îÎşÿÿÿÿ
-bsquid:CommentedOutCodeLine‹"<This block of commented-out lines of code should be removed.(äßù
-csquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(âƒÀ
-T
-squid:S1068"9Replace this use of System.out or System.err by a logger.(µÁóíıÿÿÿÿ
-O
-squid:S1069"9Replace this use of System.out or System.err by a logger.(ŞŸÂü
-T
-squid:S106:"9Replace this use of System.out or System.err by a logger.(’Œ¨üÿÿÿÿ
-T
-squid:S106="9Replace this use of System.out or System.err by a logger.(úÒÍ±úÿÿÿÿ
-O
-squid:S106L"9Replace this use of System.out or System.err by a logger.(‹²ß°
-Ksquid:S1481"/Remove this unused "jenkinsApi" local variable.(‰­òûÿÿÿÿ
-Isquid:S1481ƒ",Remove this unused "viewApi" local variable.(ñı÷Ôúÿÿÿÿ
-?squid:S1148+"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-?squid:S1148?"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-?squid:S1148N"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-?squid:S1148q"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-?squid:S1148}"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
