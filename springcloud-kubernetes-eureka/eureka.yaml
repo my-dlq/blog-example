@@ -1,0 +1,98 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-nodeport
+  labels:
+    app: eureka-nodeport
+spec:
+  type: NodePort
+  ports:
+  - name: server
+    port: 8080
+    targetPort: 8080
+    nodePort: 32001
+  selector:
+    app: eureka
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka
+  labels:
+    app: eureka
+spec:
+  clusterIP: None
+  ports:
+    - name: server
+      port: 8080
+      targetPort: 8080
+    - name: management
+      port: 8081
+  selector:
+    app: eureka
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eureka
+  labels:
+    app: eureka
+spec:
+  serviceName: eureka
+  replicas: 3
+  podManagementPolicy: Parallel
+  selector:
+    matchLabels:
+      app: eureka
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: eureka
+          image: registry.cn-beijing.aliyuncs.com/mydlq/eureka:0.0.3
+          ports:
+            - name: server
+              containerPort: 8080
+            - name: management
+              containerPort: 8081
+          env:
+            - name: APP_NAME
+              value: "eureka"
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: APP_OPTS
+              value: "
+                     --eureka.instance.hostname=${POD_NAME}.${APP_NAME}
+                     --registerWithEureka=true
+                     --fetchRegistry=true
+                     --eureka.instance.preferIpAddress=false
+                     --eureka.client.serviceUrl.defaultZone=http://eureka-0.${APP_NAME}:8080/eureka/,http://eureka-1.${APP_NAME}:8080/eureka/,http://eureka-2.${APP_NAME}:8080/eureka/
+                     "
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 1024Mi
+            requests:
+              cpu: 2000m
+              memory: 1024Mi
+          readinessProbe:              #就绪探针
+            initialDelaySeconds: 20    #延迟加载时间
+            periodSeconds: 5           #重试时间间隔
+            timeoutSeconds: 10         #超时时间设置
+            failureThreshold: 5        #探测失败的重试次数
+            httpGet:
+              path: /actuator/health
+              port: 8081
+          livenessProbe:               #存活探针
+            initialDelaySeconds: 60    #延迟加载时间
+            periodSeconds: 5           #重试时间间隔
+            timeoutSeconds: 5          #超时时间设置
+            failureThreshold: 3        #探测失败的重试次数
+            httpGet:
+              path: /actuator/health
+              port: 8081

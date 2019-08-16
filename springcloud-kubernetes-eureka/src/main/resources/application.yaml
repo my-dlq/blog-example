@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+
+#eureka:
+#  instance:
+#    hostname:
+#  client:
+#    #registerWithEureka: true
+#    #fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
