@@ -25,7 +25,7 @@ public class Application {
         GenericObjectPool<Person> personPool = new GenericObjectPool<>(personPoolFactory, objectPoolConfig);
         // =====================测试对象池=====================
         // 循环100次，从线程池中取多个多线程执行任务，来测试对象池
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 15; i++) {
             excutor.submit(new Thread(() -> {
                 // 模拟从对象池取出对象，执行任务
                 Person person = null;

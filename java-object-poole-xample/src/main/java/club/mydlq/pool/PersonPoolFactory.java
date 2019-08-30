@@ -33,4 +33,43 @@ public class PersonPoolFactory extends BasePooledObjectFactory<Person> {
         return new DefaultPooledObject<>(person);
     }
 
+    /**
+     * 销毁对象
+     * @param p 对象池
+     * @throws Exception 异常
+     */
+    @Override
+    public void destroyObject(PooledObject<Person> p) throws Exception {
+        super.destroyObject(p);
+    }
+
+    /**
+     * 校验对象是否可用
+     * @param p 对象池
+     * @return 对象是否可用结果，boolean
+     */
+    @Override
+    public boolean validateObject(PooledObject<Person> p) {
+        return super.validateObject(p);
+    }
+
+    /**
+     * 激活钝化的对象系列操作
+     * @param p 对象池
+     * @throws Exception 异常信息
+     */
+    @Override
+    public void activateObject(PooledObject<Person> p) throws Exception {
+        super.activateObject(p);
+    }
+
+    /**
+     * 钝化未使用的对象
+     * @param p 对象池
+     * @throws Exception 异常信息
+     */
+    @Override
+    public void passivateObject(PooledObject<Person> p) throws Exception {
+        super.passivateObject(p);
+    }
 }
