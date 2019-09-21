@@ -22,4 +22,4 @@
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot-exception-handler)
 - [Kubernetes 部署注册中心 Eureka Server 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes-eureka)
 - [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java-object-poole-xample)
-
+- [Traefik V2.0 部署文件](https://github.com/my-dlq/blog-example/tree/master/traefik%20v2.0-deploy)
