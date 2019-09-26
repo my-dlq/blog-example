@@ -21,7 +21,7 @@
 - [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解](https://github.com/my-dlq/blog-example/tree/master/springboot-kafka)
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot-exception-handler)
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot-exception-handler)
-- [SpringBoot 集成 Apollo 配置中心示例](https://github.com/my-dlq/blog-example/tree/master/apollo-demo)
+- [SpringBoot 集成 Apollo 配置中心示例](https://github.com/my-dlq/blog-example/tree/master/springboot-apollo-demo)
 - [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java-object-poole-xample)
 - [Traefik V2.0 部署文件](https://github.com/my-dlq/blog-example/tree/master/traefik%20v2.0-deploy)
 
