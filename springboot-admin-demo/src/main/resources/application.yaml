@@ -1,0 +1,28 @@
+#application config
+server:
+  port: 8080
+spring:
+  application:
+    name: springboot-admin-demo
+
+#actuator config
+management:
+  server:
+    port: 8081
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#log config
+logging:
+  path: /opt/logs/
+
+#eureka config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.2.11:31011/eureka/

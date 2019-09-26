@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-admin-server
+spec:
+  type: NodePort
+  ports:
+    - name: server
+      nodePort: 31083
+      port: 8080
+      targetPort: 8080
+    - name: management
+      nodePort: 31084
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: springboot-admin-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-admin-server
+  labels:
+    app: springboot-admin-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-admin-server
+  template:
+    metadata:
+      name: springboot-admin-server
+      labels:
+        app: springboot-admin-server
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: springboot-admin-server
+          image: mydlqclub/springboot-admin-server:0.0.1
+          #imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: server
+          env:
+            #注意修改下面 apollo.meta 参数值中的 mydlqcloud 为你自己的部署 Apollo 的 Namespace 名称
+            - name: APP_OPTS
+              value: "
+                      --eureka.client.serviceUrl.defaultZone=http://eureka-0.eureka.mydlqcloud:8080/eureka/,http://eureka-1.eureka.mydlqcloud:8080/eureka/,http://eureka-2.eureka.mydlqcloud:8080/eureka/
+                     "
+          resources:
+            limits:
+              memory: 1024Mi
+              cpu: 1000m
+            requests:
+              memory: 1024Mi
+              cpu: 1000m
+          readinessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 10
+            failureThreshold: 5
+            httpGet:
+              path: /actuator/health
+              port: 8081
+          livenessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8081
+          volumeMounts:
+            - name: log
+              mountPath: /opt/logs
+      volumes:
+        - name: log
+          hostPath:
+            type: DirectoryOrCreate
+            path: /data/apps/logs
