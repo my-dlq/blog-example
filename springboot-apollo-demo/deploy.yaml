@@ -35,7 +35,7 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-        - name: springcloud-k8s-config
+        - name: springboot-apollo
           image: mydlqclub/springboot-apollo:0.0.1
           imagePullPolicy: Always
           ports:
