@@ -67,6 +67,7 @@ spec:
                   fieldPath: metadata.name
             - name: APP_OPTS
               value: "
+                     --spring.application.name=${APP_NAME}
                      --eureka.instance.hostname=${POD_NAME}.${APP_NAME}
                      --registerWithEureka=true
                      --fetchRegistry=true
