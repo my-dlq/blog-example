@@ -4,7 +4,10 @@ server:
 management:
   server:
     port: 8081
-
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 #eureka:
 #  instance:
 #    hostname:
