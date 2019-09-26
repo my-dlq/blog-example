@@ -1,0 +1,20 @@
+#应用配置
+server:
+  port: 8080
+spring:
+  application:
+    name: apollo-demo
+
+#Apollo 配置
+app:
+  id: apollo-test                            #应用ID
+apollo:
+  cacheDir: /opt/data/                       #配置本地配置缓存目录
+  cluster: shanghai                           #指定使用哪个集群的配置
+  meta: http://192.168.2.11:30002            #配置中心地址
+  autoUpdateInjectedSpringProperties: true   #是否开启 Spring 参数自动更新
+  bootstrap:
+    enabled: true                            #是否开启 Apollo
+    namespaces: dev-2                  #设置 Namespace
+    eagerLoad:
+      enabled: false                         #将 Apollo 加载提到初始化日志系统之前

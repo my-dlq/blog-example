@@ -20,6 +20,9 @@
 - [Kubernetes 环境 SpringCloud 链路追踪、Zipkin 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud-kubernetes-sleuth-demo)
 - [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解](https://github.com/my-dlq/blog-example/tree/master/springboot-kafka)
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot-exception-handler)
-- [Kubernetes 部署注册中心 Eureka Server 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes-eureka)
+- [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot-exception-handler)
+- [SpringBoot 集成 Apollo 配置中心示例](https://github.com/my-dlq/blog-example/tree/master/apollo-demo)
 - [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java-object-poole-xample)
 - [Traefik V2.0 部署文件](https://github.com/my-dlq/blog-example/tree/master/traefik%20v2.0-deploy)
+
+

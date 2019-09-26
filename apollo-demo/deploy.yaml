@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-apollo
+spec:
+  type: NodePort
+  ports:
+    - name: server
+      nodePort: 31080
+      port: 8080
+      targetPort: 8080
+    - name: management
+      nodePort: 31081
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: springboot-apollo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-apollo
+  labels:
+    app: springboot-apollo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-apollo
+  template:
+    metadata:
+      name: springboot-apollo
+      labels:
+        app: springboot-apollo
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: springcloud-k8s-config
+          image: mydlqclub/springboot-apollo:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: server
+          env:
+            - name: JAVA_OPTS
+              value: "-Denv=DEV"
+            #注意修改下面 apollo.meta 参数值中的 mydlqcloud 为你自己的部署 Apollo 的 Namespace 名称 
+            - name: APP_OPTS
+              value: "
+                     --app.id=apollo-demo
+                     --apollo.bootstrap.enabled=true
+                     --apollo.bootstrap.eagerLoad.enabled=false
+                     --apollo.cacheDir=/opt/data/
+                     --apollo.cluster=default
+                     --apollo.bootstrap.namespaces=application
+                     --apollo.autoUpdateInjectedSpringProperties=true
+                     --apollo.meta=http://service-apollo-config-server-dev.mydlqcloud:8080
+                     "
+          resources:
+            limits:
+              memory: 1000Mi
+              cpu: 1000m
+            requests:
+              memory: 500Mi
+              cpu: 500m
