@@ -1,0 +1,12 @@
+#log config
+logging:
+  path: /opt/logs/
+#eureka config
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      #defaultZone: http://192.168.2.11:31011/eureka/
+      defaultZone: http://eureka-0.eureka.mydlqcloud:8080/eureka/,http://eureka-1.eureka.mydlqcloud:8080/eureka/,http://eureka-2.eureka.mydlqcloud:8080/eureka/

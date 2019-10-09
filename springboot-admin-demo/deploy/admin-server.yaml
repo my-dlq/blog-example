@@ -33,20 +33,16 @@ spec:
       labels:
         app: springboot-admin-server
     spec:
-      restartPolicy: Always
+      serviceAccountName: springboot-admin
       containers:
         - name: springboot-admin-server
           image: mydlqclub/springboot-admin-server:0.0.1
-          #imagePullPolicy: Always
+          imagePullPolicy: Always
           ports:
-            - containerPort: 8080
-              name: server
-          env:
-            #注意修改下面 apollo.meta 参数值中的 mydlqcloud 为你自己的部署 Apollo 的 Namespace 名称
-            - name: APP_OPTS
-              value: "
-                      --eureka.client.serviceUrl.defaultZone=http://eureka-0.eureka.mydlqcloud:8080/eureka/,http://eureka-1.eureka.mydlqcloud:8080/eureka/,http://eureka-2.eureka.mydlqcloud:8080/eureka/
-                     "
+            - name: server
+              containerPort: 8080
+            - name: management
+              containerPort: 8081
           resources:
             limits:
               memory: 1024Mi
