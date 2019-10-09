@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springcloud-zuul
+spec:
+  type: NodePort
+  ports:
+    - name: server
+      nodePort: 31085
+      port: 8080
+      targetPort: 8080
+    - name: management
+      nodePort: 31086
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: springcloud-zuul
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springcloud-zuul
+  labels:
+    app: springcloud-zuul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springcloud-zuul
+  template:
+    metadata:
+      name: springcloud-zuul
+      labels:
+        app: springcloud-zuul
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: springcloud-zuul
+          image: mydlqclub/springcloud-zuul:0.0.1
+          #imagePullPolicy: Always
+          ports:
+            - name: server
+              containerPort: 8080
+            - name: management
+              containerPort: 8081
+          resources:
+            limits:
+              memory: 2048Mi
+              cpu: 2000m
+            requests:
+              memory: 2048Mi
+              cpu: 2000m
+          readinessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 10
+            failureThreshold: 5
+            httpGet:
+              path: /actuator/health
+              port: 8081
+          livenessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8081
+          volumeMounts:
+            - name: log
+              mountPath: /opt/logs
+      volumes:
+        - name: log
+          hostPath:
+            type: DirectoryOrCreate
+            path: /data/apps/logs

@@ -1,0 +1,33 @@
+#Actuator Config
+management:
+  server:
+    port: 8081
+  endpoint:
+    restart:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#Base Config
+server:
+  port: 8080
+spring:
+  application:
+    name: springcloud-zuul-demo
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: polling
+        period: 5000
+        strategy: refresh
+        monitoring-secrets: true
+      config:
+        enabled: true
+        enableApi: true
+        sources:
+          - namespace: mydlqcloud
+            name: springcloud-zuul-config

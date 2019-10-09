@@ -1,0 +1,65 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: springcloud-zuul-config
+data:
+  application.yaml: |-
+    #Redis
+    spring:
+      redis:
+        #host: 192.168.2.11
+        host: redis-master.mydlqcloud
+        port: 6379
+        password: 123456
+
+    #Log Config
+    logging:
+      path: /opt/logs/
+
+    #Eureka Config
+    eureka:
+      client:
+        service-url:
+          defaultZone: http://eureka-0.eureka.mydlqcloud:8080/eureka/,http://eureka-1.eureka.mydlqcloud:8080/eureka/,http://eureka-2.eureka.mydlqcloud:8080/eureka/
+
+    #Ribbon Timeout Config
+    ribbon:
+      ReadTimeout: 1500
+      ConnectTimeout: 5000
+      SocketTimeout: 1500
+
+    #Hystrix Config
+    hystrix:
+      command:
+        default:
+          execution:
+            isolation:
+              thread:
+                timeoutInMilliseconds: 6000
+
+    #Zuul Config
+    zuul:
+      retryable: false
+      add-host-header: false
+      prefix: /v1
+      routes:
+        helloworld:
+          path: /helloworld/**
+          serviceId: springboot-helloworld
+      ratelimit:
+        key-prefix: retelimit
+        enabled: true
+        repository: redis
+        behind-proxy: true
+        add-response-headers: true
+        # globle retelimit config
+        default-policy-list:
+          - limit: 10
+            quota: 100
+            refresh-interval: 10
+        # single service config
+        policy-list:
+          springboot-helloworld:
+            - limit: 10
+              quota: 100
+              refresh-interval: 60
