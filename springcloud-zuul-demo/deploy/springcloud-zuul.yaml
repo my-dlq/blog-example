@@ -33,7 +33,7 @@ spec:
       labels:
         app: springcloud-zuul
     spec:
-      restartPolicy: Always
+      serviceAccountName: springcloud-zuul
       containers:
         - name: springcloud-zuul
           image: mydlqclub/springcloud-zuul:0.0.1
