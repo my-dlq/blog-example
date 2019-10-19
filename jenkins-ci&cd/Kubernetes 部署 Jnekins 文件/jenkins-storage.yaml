@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins
+  labels:
+    app: jenkins
+spec:
+  capacity:          
+    storage: 50Gi
+  accessModes:       
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain  
+  mountOptions:         #NFS挂在选项
+    - hard
+    - nfsvers=4.1    
+  nfs:                  #NFS设置
+    path: /nfs/data/jenkins   
+    server: 192.168.2.11
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jenkins
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi     #存储空间大小
+  selector:
+    matchLabels:
+      app: jenkins

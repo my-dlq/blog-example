@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+  labels:
+    app: jenkins
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 8080                      #服务端口
+    targetPort: 8080
+    nodePort: 32001               #NodePort方式暴露 Jenkins 端口
+  - name: jnlp
+    port: 50000                     #代理端口
+    targetPort: 50000
+    nodePort: 32002
+  selector:
+    app: jenkins
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  labels:
+    app: jenkins
+spec:
+  selector:
+    matchLabels:
+      app: jenkins
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      serviceAccountName: jenkins-admin
+      containers:
+      - name: jenkins
+        image: jenkins/jenkins:2.199
+        securityContext:                     
+          runAsUser: 0                      #设置以ROOT用户运行容器
+          privileged: true                  #拥有特权
+        ports:
+        - name: http
+          containerPort: 8080
+        - name: jnlp
+          containerPort: 50000
+        resources:
+          limits:
+            memory: 2Gi
+            cpu: "2000m"
+          requests:
+            memory: 2Gi
+            cpu: "2000m"
+        env:
+        - name: LIMITS_MEMORY
+          valueFrom:
+            resourceFieldRef:
+              resource: limits.memory
+              divisor: 1Mi
+        - name: "JAVA_OPTS"                 #设置变量，指定时区和 jenkins slave 执行者设置
+          value: " 
+                   -Xmx$(LIMITS_MEMORY)m 
+                   -XshowSettings:vm 
+                   -Dhudson.slaves.NodeProvisioner.initialDelay=0
+                   -Dhudson.slaves.NodeProvisioner.MARGIN=50
+                   -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
+                   -Duser.timezone=Asia/Shanghai
+                 "    
+        - name: "JENKINS_OPTS"
+          value: "--prefix=/jenkins"         #设置路径前缀加上 Jenkins
+        volumeMounts:                        #设置要挂在的目录
+        - name: data
+          mountPath: /var/jenkins_home
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: jenkins                 #设置PVC

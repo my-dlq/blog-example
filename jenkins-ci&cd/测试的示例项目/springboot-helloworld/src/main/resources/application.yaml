@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  tomcat:
+    basedir: "/"
+    
+spring:
+  application:
+    name: springboot-helloworld
+
+management:
+  endpoint:
+    restart:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8081
