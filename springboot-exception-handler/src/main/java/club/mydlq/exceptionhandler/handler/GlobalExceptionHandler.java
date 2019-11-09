@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 //@RestControllerAdvice代替@ControllerAdvice,这样在方法上就可以不需要添加@ResponseBody
 @RestControllerAdvice(basePackages = "club.mydlq")
-public class ExceptionHandler {
+public class GlobalExceptionHandler {
 
     /**
      * MyException异常处理器

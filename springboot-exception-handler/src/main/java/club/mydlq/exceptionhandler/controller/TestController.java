@@ -39,7 +39,7 @@ public class TestController {
      * 抛出空指针异常，测试全局异常处理器
      */
     @GetMapping("/exception")
-    public String createGlobleException() throws NullPointerException {
+    public String createGlobleException() {
         throw new NullPointerException("NullPointerException 空指针异常信息");
     }
 
