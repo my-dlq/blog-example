@@ -1,6 +1,7 @@
 package club.mydlq.exceptionhandler.controller;
 
 import club.mydlq.exceptionhandler.entity.ResponseInfo;
+import club.mydlq.exceptionhandler.enums.ResultEnum;
 import club.mydlq.exceptionhandler.exception.MyException;
 import club.mydlq.exceptionhandler.exception.NotFountResourceException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,8 @@ public class TestController {
      */
     @GetMapping("/normal")
     public ResponseInfo normal() {
-        ResponseInfo responseInfo = new ResponseInfo();
-        responseInfo.success("正常");
-        return responseInfo;
+        String data = "模拟的响应数据";
+        return new ResponseInfo(ResultEnum.SUCCESS,data);
     }
 
     /**

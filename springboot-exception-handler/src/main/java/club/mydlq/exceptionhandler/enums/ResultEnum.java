@@ -1,8 +1,10 @@
-package club.mydlq.exceptionhandler.entity;
+package club.mydlq.exceptionhandler.enums;
 
+/**
+ * 定义返回码的枚举类
+ */
 public enum ResultEnum {
 
-    // 据操作错误定义
     SUCCESS(1000, "Success"),
     UNKNOWN_ERROR(1001,"未知的错误!"),
     NOT_FOUNT_RESOURCE(1002,"没有找到相关资源!"),

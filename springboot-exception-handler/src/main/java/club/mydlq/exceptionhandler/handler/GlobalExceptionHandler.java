@@ -1,6 +1,6 @@
 package club.mydlq.exceptionhandler.handler;
 
-import club.mydlq.exceptionhandler.entity.ResultEnum;
+import club.mydlq.exceptionhandler.enums.ResultEnum;
 import club.mydlq.exceptionhandler.entity.ResponseInfo;
 import club.mydlq.exceptionhandler.exception.MyException;
 import club.mydlq.exceptionhandler.exception.NotFountResourceException;
@@ -17,53 +17,47 @@ public class GlobalExceptionHandler {
 
     /**
      * MyException异常处理器
-     * @param e
-     * @return
+     *
+     * @param e MyException
+     * @return ResponseInfo
      */
     @ExceptionHandler(MyException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public ResponseInfo myExceptionHandler(MyException e){
-        ResponseInfo responseInfo = new ResponseInfo();
-        // 将枚举类中的异常信息设置到responseInfo对象中
-        responseInfo.error(ResultEnum.PARAMETER_ERROR);
+    public ResponseInfo myExceptionHandler(MyException e) {
         // 判断异常消息是否为空，如果抛出异常时在异常中设定了异常消息，
         // 则用优先使用异常中设定的信息替换枚举类中设定的异常信息
-        if (StringUtils.isEmpty(e.getMessage())){
-            responseInfo.setMessage(e.getMessage());
+        if (!StringUtils.isEmpty(e.getMessage())) {
+            return new ResponseInfo(ResultEnum.PARAMETER_ERROR.getCode(), e.getMessage());
         }
-        return responseInfo;
+        return new ResponseInfo(ResultEnum.PARAMETER_ERROR);
     }
 
     /**
      * NotFountResourceException异常处理器
-     * @param e
-     * @return
+     * @param e NotFountResourceException
+     * @return ResponseInfo
      */
     @ExceptionHandler(NotFountResourceException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    public ResponseInfo nodFountResourceExceptionHandler(NotFountResourceException e){
-        ResponseInfo responseInfo = new ResponseInfo();
-        responseInfo.error(ResultEnum.NOT_FOUNT_RESOURCE);
-        if (StringUtils.isEmpty(e.getMessage())){
-            responseInfo.setMessage(e.getMessage());
+    public ResponseInfo nodFountResourceExceptionHandler(NotFountResourceException e) {
+        if (StringUtils.isEmpty(e.getMessage())) {
+            return new ResponseInfo(ResultEnum.NOT_FOUNT_RESOURCE.getCode(), e.getMessage());
         }
-        return responseInfo;
+        return new ResponseInfo(ResultEnum.NOT_FOUNT_RESOURCE);
     }
 
     /**
      * 全局异常处理器
-     * @param e
-     * @return
+     * @param e Exception
+     * @return ResponseInfo
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseInfo globleExceptionHandler(Exception e){
-        ResponseInfo responseInfo = new ResponseInfo();
-        responseInfo.error(ResultEnum.UNKNOWN_ERROR);
-        if (StringUtils.isEmpty(e.getMessage())){
-            responseInfo.setMessage(e.getMessage());
+    public ResponseInfo globleExceptionHandler(Exception e) {
+        if (StringUtils.isEmpty(e.getMessage())) {
+            return new ResponseInfo(ResultEnum.UNKNOWN_ERROR.getCode(), e.getMessage());
         }
-        return responseInfo;
+        return new ResponseInfo(ResultEnum.UNKNOWN_ERROR);
     }
 
 }
