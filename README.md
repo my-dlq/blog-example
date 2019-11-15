@@ -25,7 +25,7 @@
 
 ### SpringBoot
 
-- [SpringBoot 配置过滤器示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-exception-handler)
+- [SpringBoot 配置过滤器示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-filter-example)
 - [SpringBoot Dockerfile 实践示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-dockerfile)
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-exception-handler)
 - [SpringBoot 使用 Swagger2 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-example)
@@ -40,5 +40,5 @@
 - [Kubernetes 部署 SpringCloud 网关 Zuul 1.x + Eureka 动态路由](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-zuul-demo)
 - [Kubernetes 环境 SpringCloud Feign 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-feign-demo)
 - [Kubernetes 环境 SpringCloud 链路追踪、Zipkin 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-sleuth-demo)
-- [SpringCloud Kubernetes Discovery 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud/springcloud-kubernetes-discovery-demo)
-- [SpringCloud Kubernetes Config 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud-kubernetes/springcloud/springcloud-kubernetes-config-demo)
+- [SpringCloud Kubernetes Discovery 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-discovery-demo)
+- [SpringCloud Kubernetes Config 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-config-demo)
