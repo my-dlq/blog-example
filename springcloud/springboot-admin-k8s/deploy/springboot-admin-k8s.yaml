@@ -5,7 +5,6 @@ metadata:
   labels:
     app: springboot-admin-k8s
     admin: enabled            #---设置此标签，表示此应用被 Springboot Admin 服务发现
-  annotations:
 spec:
   type: NodePort              #---通过NodePort方式暴露端口，方便外界访问
   ports:
