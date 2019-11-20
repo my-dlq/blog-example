@@ -31,7 +31,7 @@
 - [SpringBoot 使用 Swagger2 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-example)
 - [SpringBoot 集成 Apollo 配置中心示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-apollo-demo)
 - [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-kafka)
-- [SpringBoot 使用@Valid + Exception 全局异常处理来接口参数效验示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-valid-demo)
+- [SpringBoot 使用 @Valid + Exception 全局异常处理来接口参数效验示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-valid-demo)
 
 ### SpringCloud
 
