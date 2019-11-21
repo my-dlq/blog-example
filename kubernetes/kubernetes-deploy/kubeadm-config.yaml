@@ -1,0 +1,20 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 192.168.2.11
+  bindPort: 6443
+nodeRegistration:
+  taints:
+  - effect: PreferNoSchedule
+    key: node-role.kubernetes.io/master
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+imageRepository: registry.aliyuncs.com/google_containers
+kubernetesVersion: v1.16.3
+networking:
+  podSubnet: 10.244.0.0/16
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: ipvs

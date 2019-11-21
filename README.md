@@ -2,6 +2,7 @@
 
 ### Kubernetes
 
+- [Kubeadm 部署 Kubernetes 集群配置文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-deploy)
 - [Traefik Ingress V1.7 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v1.7-deploy)
 - [Traefik Ingress V2.0 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.0-deploy)
 - [Prometheus Operator 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/prometheus-operator)
