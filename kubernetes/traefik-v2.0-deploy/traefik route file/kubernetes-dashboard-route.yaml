@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   tls:
-    secretName: mydlq-tls
+    secretName: cloud-mydlq-tls
   routes:
     - match: Host(`cloud.mydlq.club`) 
       kind: Rule
