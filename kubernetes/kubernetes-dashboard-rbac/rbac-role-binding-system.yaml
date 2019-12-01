@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: rbac-role-binding
+  namespace: rbac-namespace
+subjects:
+  - kind: ServiceAccount
+    name: rbac-service-account
+    namespace: rbac-namespace
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin

@@ -9,6 +9,7 @@
 - [Kubernetes 部署 SonarQube 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonarqube-deploy)
 - [Kubernetes 部署 Sonatype Nexus3 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonatype-nexus-deploy)
 - [Kubernetes 部署 NFS Provisioner 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/nfs-provisioner-deploy)
+- [Kubernetes 创建用户用的 Dashboard RBAC 权限示例文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-dashboard-rbac)
 - [Kubernetes 部署 Kafka & Zookeeper & Kafka-Manager 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kafka-zookeeper-deploy)
 - [Kubernetes 部署 DashBoard 2.0.0-beta1 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-dashboard2.0.0-beta1-deploy)
 - [Kubernetes 部署 DashBoard 2.0.0-beta2 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-dashboard2.0.0-beta2-deploy)
