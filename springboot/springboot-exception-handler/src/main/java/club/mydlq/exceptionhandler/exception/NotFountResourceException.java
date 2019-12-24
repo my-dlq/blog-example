@@ -1,5 +1,8 @@
 package club.mydlq.exceptionhandler.exception;
 
+/**
+ * @author mydlq
+ */
 public class NotFountResourceException extends RuntimeException{
 
     public NotFountResourceException() {

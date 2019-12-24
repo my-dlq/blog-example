@@ -7,6 +7,11 @@ import club.mydlq.exceptionhandler.exception.NotFountResourceException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 测试 Controller
+ *
+ * @author mydlq
+ */
 @RestController
 public class TestController {
 
@@ -16,7 +21,9 @@ public class TestController {
     @GetMapping("/normal")
     public ResponseInfo normal() {
         String data = "模拟的响应数据";
-        return new ResponseInfo(ResultEnum.SUCCESS,data);
+        return new ResponseInfo().setCode(ResultEnum.SUCCESS.getCode())
+                .setMessage(ResultEnum.SUCCESS.getMessage())
+                .setData(data);
     }
 
     /**
