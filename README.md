@@ -27,6 +27,7 @@
 
 ### SpringBoot
 
+- [SpringBoot 操作 Redis 详解](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-example)
 - [SpringBoot 配置过滤器示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-filter-example)
 - [SpringBoot Dockerfile 实践示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-dockerfile)
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-exception-handler)
