@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用于处理404错误
+ *
+ * @author mydlq
  */
 @RestController
 public class ErrorHandler implements ErrorController {
@@ -24,10 +26,14 @@ public class ErrorHandler implements ErrorController {
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public ResponseInfo handleError(HttpServletRequest request) {
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        if (statusCode == 404) {
-            return new ResponseInfo(ResultEnum.NOT_FOUNT_RESOURCE);
+        // 如果等于 400 错误，则抛出设定的枚举类中的错误信息
+        if (HttpStatus.NOT_FOUND.value() == statusCode) {
+            return new ResponseInfo().setMessage(ResultEnum.NOT_FOUNT_RESOURCE.getMessage())
+                    .setCode(ResultEnum.NOT_FOUNT_RESOURCE.getCode());
         }
-        return new ResponseInfo(ResultEnum.UNKNOWN_ERROR);
+        // 返回默认错误
+        return new ResponseInfo().setMessage(ResultEnum.UNKNOWN_ERROR.getMessage())
+                .setCode(ResultEnum.UNKNOWN_ERROR.getCode());
     }
 
 }

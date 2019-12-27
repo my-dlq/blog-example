@@ -1,5 +1,8 @@
 package club.mydlq.exceptionhandler.exception;
 
+/**
+ * @author mydlq
+ */
 public class MyException extends RuntimeException{
 
     public MyException() {
