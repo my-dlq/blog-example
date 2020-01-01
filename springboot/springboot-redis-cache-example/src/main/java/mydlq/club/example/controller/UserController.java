@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public String getUser(@RequestBody User user) {
+    public String createUser(@RequestBody User user) {
         userService.addUser(user);
         return "SUCCESS";
     }
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{username}")
-    public String updateUser(@PathVariable String username) {
+    public String deleteUser(@PathVariable String username) {
         userService.deleteByUsername(username);
         return "SUCCESS";
     }

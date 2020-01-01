@@ -22,7 +22,7 @@ public class UserInfoController {
     }
 
     @PostMapping("/userInfo")
-    public String getUserInfo(@RequestBody UserInfo userInfo) {
+    public String createUserInfo(@RequestBody UserInfo userInfo) {
         userInfoService.addUserInfo(userInfo);
         return "SUCCESS";
     }
@@ -33,7 +33,7 @@ public class UserInfoController {
     }
 
     @DeleteMapping("/userInfo/{name}")
-    public String updateUserInfo(@PathVariable String name) {
+    public String deleteUserInfo(@PathVariable String name) {
         userInfoService.deleteByName(name);
         return "SUCCESS";
     }
