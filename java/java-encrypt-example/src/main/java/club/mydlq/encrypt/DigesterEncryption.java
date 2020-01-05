@@ -1,4 +1,4 @@
-package club.mydlq.valid;
+package club.mydlq.encrypt;
 
 import cn.hutool.crypto.digest.DigestUtil;
 

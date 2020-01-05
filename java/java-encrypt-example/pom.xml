@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.aspire</groupId>
-    <artifactId>java-encrypt</artifactId>
+    <artifactId>java-encrypt-example</artifactId>
     <version>0.0.1</version>
-    <name>java-encrypt</name>
+    <name>java-encrypt-example</name>
     <description>java encrypt demo</description>
 
     <properties>
