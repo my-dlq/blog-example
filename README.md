@@ -23,7 +23,7 @@
 
 ### Java 
 
-- [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java/java-object-poole-xample)
+- [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java/java-object-poole-example)
 
 ### SpringBoot
 
