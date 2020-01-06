@@ -41,7 +41,7 @@
 ### SpringCloud
 
 - [Kubernetes 部署 SpringCloud 注册中心 Eureka](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-zuul-demo)
-- [SpringBoot Admin 集成 SpringCloud Kubernetes 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springboot-admin-k8s)
+- [SpringBoot Admin 集成 SpringCloud Kubernetes 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springboot-admin-k8s)
 - [Kubernetes 部署 SpringBoot Admin + Eureka 监控微服务示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springboot-admin-demo)
 - [Kubernetes 部署 SpringCloud 网关 Zuul 1.x + Eureka 动态路由](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-zuul-demo)
 - [Kubernetes 环境 SpringCloud Feign 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-feign-demo)
