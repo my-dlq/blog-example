@@ -79,17 +79,14 @@ metadata:
   name: kubernetes-dashboard
   namespace: kube-system
 rules:
-  # Allow Dashboard to get, update and delete Dashboard exclusive secrets.
   - apiGroups: [""]
     resources: ["secrets"]
     resourceNames: ["kubernetes-dashboard-key-holder", "kubernetes-dashboard-certs", "kubernetes-dashboard-csrf"]
     verbs: ["get", "update", "delete"]
-    # Allow Dashboard to get and update 'kubernetes-dashboard-settings' config map.
   - apiGroups: [""]
     resources: ["configmaps"]
     resourceNames: ["kubernetes-dashboard-settings"]
     verbs: ["get", "update"]
-    # Allow Dashboard to get metrics.
   - apiGroups: [""]
     resources: ["services"]
     resourceNames: ["heapster", "dashboard-metrics-scraper"]
@@ -108,7 +105,6 @@ metadata:
     k8s-app: kubernetes-dashboard
   name: kubernetes-dashboard
 rules:
-  # Allow Metrics Scraper to get metrics from the Metrics server
   - apiGroups: ["metrics.k8s.io"]
     resources: ["pods", "nodes"]
     verbs: ["get", "list", "watch"]
@@ -169,8 +165,8 @@ spec:
     spec:
       containers:
         - name: kubernetes-dashboard
-          image: kubernetesui/dashboard:v2.0.0-beta1
-          imagePullPolicy: Always
+          image: kubernetesui/dashboard:v2.0.0-rc1
+          #imagePullPolicy: Always
           ports:
             - containerPort: 8443
               protocol: TCP
@@ -218,27 +214,43 @@ spec:
 
 ---
 
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: dashboard-metrics-scraper
+  name: dashboard-metrics-scraper
+  namespace: kube-system
+spec:
+  ports:
+    - port: 8000
+      targetPort: 8000
+  selector:
+    k8s-app: dashboard-metrics-scraper
+---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    k8s-app: kubernetes-metrics-scraper
-  name: kubernetes-metrics-scraper
+    k8s-app: dashboard-metrics-scraper
+  name: dashboard-metrics-scraper
   namespace: kube-system
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      k8s-app: kubernetes-metrics-scraper
+      k8s-app: dashboard-metrics-scraper
   template:
     metadata:
       labels:
-        k8s-app: kubernetes-metrics-scraper
+        k8s-app: dashboard-metrics-scraper
+      annotations:
+        seccomp.security.alpha.kubernetes.io/pod: 'runtime/default'
     spec:
       containers:
-        - name: kubernetes-metrics-scraper
-          image: kubernetesui/metrics-scraper:v1.0.0
+        - name: dashboard-metrics-scraper
+          image: kubernetesui/metrics-scraper:v1.0.2
           ports:
             - containerPort: 8000
               protocol: TCP
@@ -249,7 +261,20 @@ spec:
               port: 8000
             initialDelaySeconds: 30
             timeoutSeconds: 30
+          volumeMounts:
+          - mountPath: /tmp
+            name: tmp-volume
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsUser: 1001
+            runAsGroup: 2001
       serviceAccountName: kubernetes-dashboard
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
       tolerations:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
+      volumes:
+        - name: tmp-volume
+          emptyDir: {}
