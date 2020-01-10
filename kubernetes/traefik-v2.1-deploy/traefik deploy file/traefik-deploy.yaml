@@ -37,12 +37,12 @@ spec:
           ports:
             - name: web
               containerPort: 80
-              hostPort: 80           #hostPort方式，将端口暴露到集群节点
+              hostPort: 80         ## 将容器端口绑定所在服务器的 80 端口
             - name: websecure
               containerPort: 443
-              hostPort: 443          #hostPort方式，将端口暴露到集群节点
+              hostPort: 443        ## 将容器端口绑定所在服务器的 443 端口
             - name: admin
-              containerPort: 8080
+              containerPort: 8080  ## Traefik Dashboard 端口
           resources:
             limits:
               cpu: 2000m
@@ -65,7 +65,7 @@ spec:
         - name: config
           configMap:
             name: traefik-config 
-      tolerations:              #设置容忍所有污点，防止节点被设置污点
+      tolerations:              ## 设置容忍所有污点，防止节点被设置污点
         - operator: "Exists"
-      nodeSelector:             #设置node筛选器，在特定label的节点上启动
+      nodeSelector:             ## 设置node筛选器，在特定label的节点上启动
         IngressProxy: "true"
