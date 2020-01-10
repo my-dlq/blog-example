@@ -1,0 +1,42 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: traefik-config
+data:
+  traefik.yaml: |-
+    serversTransport:
+      insecureSkipVerify: true
+    api:
+      insecure: true
+      dashboard: true
+      debug: true
+    metrics:
+      prometheus: ""
+    entryPoints:
+      web:
+        address: ":80"
+      websecure:
+        address: ":443"
+    providers:
+      kubernetesCRD: ""
+    log:
+      filePath: ""
+      level: error
+      format: json
+    accessLog:
+      filePath: ""
+      format: json
+      bufferingSize: 0
+      filters:
+        retryAttempts: true
+        minDuration: 20
+      fields:
+        defaultMode: keep
+        names:
+          ClientUsername: drop
+        headers:
+          defaultMode: keep
+          names:
+            User-Agent: redact
+            Authorization: drop
+            Content-Type: keep
