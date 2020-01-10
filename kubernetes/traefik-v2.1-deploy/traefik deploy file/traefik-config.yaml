@@ -4,6 +4,7 @@ metadata:
   name: traefik-config
 data:
   traefik.yaml: |-
+    ping: ""                    ## 启用 Ping
     serversTransport:
       insecureSkipVerify: true  ## Traefik 忽略验证代理服务的 TLS 证书
     api:
