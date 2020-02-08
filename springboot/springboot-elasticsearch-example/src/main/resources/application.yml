@@ -7,7 +7,7 @@ spring:
 
 elasticsearch:
   schema: http
-  address: 10.8.17.119:32482
+  address: 127.0.0.1:9200
   connectTimeout: 10000
   socketTimeout: 10000
   connectionRequestTimeout: 10000
