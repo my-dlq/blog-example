@@ -35,6 +35,7 @@
 - [SpringBoot Dockerfile 实践示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-dockerfile)
 - [SpringBoot 使用 Caffeine 本地缓存](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-caffeine-cache-example)
 - [SpringBoot 集成 Apollo 配置中心示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-apollo-demo)
+- [SpringBoot 操作 ElasticSearch 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-elasticsearch-example)
 - [SpringBoot 多种读取配置文件中参数的方式示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-read-config-example)
 - [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-kafka)
 - [SpringBoot 使用 SpringCache 操作 Redis 进行缓存示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-cache-example)
