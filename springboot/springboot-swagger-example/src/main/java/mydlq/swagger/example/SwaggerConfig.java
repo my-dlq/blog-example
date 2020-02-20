@@ -1,6 +1,7 @@
 package mydlq.swagger.example;
 
 import com.google.common.base.Predicates;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -13,9 +14,13 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
 
+    @Value("${swagger.enable}")
+    private boolean swaggerEnable;
+
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .enable(swaggerEnable)
                 .apiInfo(apiInfo())
                 //.groupName("swagger-example-service") // 项目组名
                 .select()                               // 选择那些路径和api会生成document
