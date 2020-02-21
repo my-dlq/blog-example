@@ -15,16 +15,16 @@ public class SymmetricalEncryptionExample {
      *
      * @param data 加密数据
      */
-    public static void aesEncrypt(String data) {
+    public static void aesEncrypt(String data, String secret) {
         // 随机生成密钥
-        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.AES.getValue()).getEncoded();
+        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.AES.getValue(), secret.getBytes()).getEncoded();
         // 创建 AES 对象
         SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.AES, key);
         // 加密
-        byte[] encrypt = aes.encrypt(data);
+        String encrypt = aes.encryptHex(data);
         // 解密
-        byte[] decrypt = aes.decrypt(encrypt);
-        System.out.println("AES 解密的数据：" + new String(decrypt));
+        String decrypt = aes.decryptStr(encrypt);
+        System.out.println("AES 加密后的串：" + encrypt + "AES 解密的数据：" + decrypt);
     }
 
     /**
@@ -32,16 +32,16 @@ public class SymmetricalEncryptionExample {
      *
      * @param data 加密数据
      */
-    public static void desEncrypt(String data) {
+    public static void desEncrypt(String data, String secret) {
         // 随机生成密钥
-        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.DES.getValue()).getEncoded();
+        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.DES.getValue(), secret.getBytes()).getEncoded();
         // 创建 DES 对象
         SymmetricCrypto des = new SymmetricCrypto(SymmetricAlgorithm.DES, key);
         // 加密
-        byte[] encrypt = des.encrypt(data);
+        String encrypt = des.encryptHex(data);
         // 解密
-        byte[] decrypt = des.decrypt(encrypt);
-        System.out.println("DES 解密的数据：" + new String(decrypt));
+        String decrypt = des.decryptStr(encrypt);
+        System.out.println("DES 加密后的串：" + encrypt + "DES 解密的数据：" + decrypt);
     }
 
     /**
@@ -49,16 +49,16 @@ public class SymmetricalEncryptionExample {
      *
      * @param data 加密数据
      */
-    public static void desedeEncrypt(String data) {
+    public static void desedeEncrypt(String data, String secret) {
         // 随机生成密钥
-        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.DESede.getValue()).getEncoded();
+        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.DESede.getValue(), secret.getBytes()).getEncoded();
         // 创建 DESede 对象
         SymmetricCrypto desede = new SymmetricCrypto(SymmetricAlgorithm.DESede, key);
         // 加密
-        byte[] encrypt = desede.encrypt(data);
+        String encrypt = desede.encryptHex(data);
         // 解密
-        byte[] decrypt = desede.decrypt(encrypt);
-        System.out.println("DESede 解密的数据：" + new String(decrypt));
+        String decrypt = desede.decryptStr(encrypt);
+        System.out.println("DESede 加密后的串：" + encrypt + "DESede 解密的数据：" + decrypt);
     }
 
     /**
@@ -66,16 +66,16 @@ public class SymmetricalEncryptionExample {
      *
      * @param data 加密数据
      */
-    public static void blowfishEncrypt(String data) {
+    public static void blowfishEncrypt(String data, String secret) {
         // 随机生成密钥
-        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.Blowfish.getValue()).getEncoded();
+        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.Blowfish.getValue(), secret.getBytes()).getEncoded();
         // 创建 Blowfish 对象
         SymmetricCrypto blowfish = new SymmetricCrypto(SymmetricAlgorithm.Blowfish, key);
         // 加密
-        byte[] encrypt = blowfish.encrypt(data);
+        String encrypt = blowfish.encryptHex(data);
         // 解密
-        byte[] decrypt = blowfish.decrypt(encrypt);
-        System.out.println("Blowfish 解密的数据：" + new String(decrypt));
+        String decrypt = blowfish.decryptStr(encrypt);
+        System.out.println("Blowfish 加密后的串：" + encrypt + "Blowfish 解密的数据：" + decrypt);
     }
 
     /**
@@ -83,16 +83,16 @@ public class SymmetricalEncryptionExample {
      *
      * @param data 加密数据
      */
-    public static void rc2Encrypt(String data) {
+    public static void rc2Encrypt(String data, String secret) {
         // 随机生成密钥
-        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.RC2.getValue()).getEncoded();
+        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.RC2.getValue(), secret.getBytes()).getEncoded();
         // 创建 RC2 对象
         SymmetricCrypto rc2 = new SymmetricCrypto(SymmetricAlgorithm.RC2, key);
         // 加密
-        byte[] encrypt = rc2.encrypt(data);
+        String encrypt = rc2.encryptHex(data);
         // 解密
-        byte[] decrypt = rc2.decrypt(encrypt);
-        System.out.println("RC2 解密的数据：" + new String(decrypt));
+        String decrypt = rc2.decryptStr(encrypt);
+        System.out.println("RC2 加密后的串：" + encrypt + "RC2 解密的数据：" + decrypt);
     }
 
     /**
@@ -100,33 +100,35 @@ public class SymmetricalEncryptionExample {
      *
      * @param data 加密数据
      */
-    public static void arcfourEncrypt(String data) {
+    public static void arcfourEncrypt(String data, String secret) {
         // 随机生成密钥
-        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.ARCFOUR.getValue()).getEncoded();
+        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.ARCFOUR.getValue(), secret.getBytes()).getEncoded();
         // 创建 ARCFOUR 对象
         SymmetricCrypto arcfour = new SymmetricCrypto(SymmetricAlgorithm.ARCFOUR, key);
         // 加密
-        byte[] encrypt = arcfour.encrypt(data);
+        String encrypt = arcfour.encryptHex(data);
         // 解密
-        byte[] decrypt = arcfour.decrypt(encrypt);
-        System.out.println("ARCFOUR 解密的数据：" + new String(decrypt));
+        String decrypt = arcfour.decryptStr(encrypt);
+        System.out.println("ARCFOUR 加密后的串：" + encrypt + "ARCFOUR 解密的数据：" + decrypt);
     }
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         /* 设置要加密的内容 */
         String data = "测试数据";
+        String secret1 = "abcdefghijklmnop";
+        String secret2 = "abcdefghijklmnopqrstuvwx";
         /* AES加密 */
-        aesEncrypt(data);
+        aesEncrypt(data, secret1);
         /* DES加密 */
-        desEncrypt(data);
+        desEncrypt(data, secret1);
         /* RC2加密 */
-        rc2Encrypt(data);
+        rc2Encrypt(data, secret1);
         /* Blowfish加密 */
-        blowfishEncrypt(data);
-        /* DESede加密 */
-        desedeEncrypt(data);
+        blowfishEncrypt(data, secret1);
         /* ARCFOUR加密 */
-        arcfourEncrypt(data);
+        arcfourEncrypt(data, secret1);
+        /* DESede加密 */
+        desedeEncrypt(data, secret2);
     }
 
 }
