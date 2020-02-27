@@ -1,0 +1,7 @@
+zookeeper:
+  address: 127.0.0.1:2181     #zookeeper Server地址,如果有多个,使用","隔离
+                              #例如 ip1:port1,ip2:port2,ip3:port3
+  retryCount: 5               #重试次数
+  elapsedTimeMs: 5000         #重试间隔时间
+  sessionTimeoutMs: 30000     #Session超时时间
+  connectionTimeoutMs: 10000  #连接超时时间
