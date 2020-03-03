@@ -23,6 +23,7 @@
 ### Java 
 
 - [Java 中的加密与签名示例](https://github.com/my-dlq/blog-example/tree/master/java/java-encrypt-example)
+- [Java 中使用 HttpClinet 工具详解示例](https://github.com/my-dlq/blog-example/tree/master/java/java-httpclient-example)
 - [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java/java-object-poole-example)
 
 ### SpringBoot

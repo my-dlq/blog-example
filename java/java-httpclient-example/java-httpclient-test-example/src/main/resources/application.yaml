@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: java-httpclient-test-example
+
+server:
+  port: 8080
+
+
