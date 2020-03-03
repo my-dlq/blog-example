@@ -29,7 +29,7 @@ public class LoginExample {
                     .addParameter("t_password", "123456")
                     .build();
             // 执行 Http 请求，进行登录
-            HttpClientUtil.getHttpclient().execute(request);
+            response = HttpClientUtil.getHttpclient().execute(request);
             // 如果登录成功，则能获取 sessionid
             String jsessionid = HttpClientUtil.getCookieStore().getCookies().get(0).getValue();
             log.info("获取的 sessionid 为：{}", jsessionid);
