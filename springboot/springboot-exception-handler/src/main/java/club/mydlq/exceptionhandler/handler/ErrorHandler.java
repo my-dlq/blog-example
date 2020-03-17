@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 用于处理404错误
- *
- * @author mydlq
+ * 用于处理404、500错误
  */
 @RestController
 public class ErrorHandler implements ErrorController {
@@ -26,14 +24,16 @@ public class ErrorHandler implements ErrorController {
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public ResponseInfo handleError(HttpServletRequest request) {
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        // 如果等于 400 错误，则抛出设定的枚举类中的错误信息
+        // 如果等于 404 错误，则抛出设定的枚举类中的错误信息
         if (HttpStatus.NOT_FOUND.value() == statusCode) {
-            return new ResponseInfo().setMessage(ResultEnum.NOT_FOUNT_RESOURCE.getMessage())
+            return new ResponseInfo()
+                    .setMessage(ResultEnum.NOT_FOUNT_RESOURCE.getMessage())
                     .setCode(ResultEnum.NOT_FOUNT_RESOURCE.getCode());
         }
-        // 返回默认错误
-        return new ResponseInfo().setMessage(ResultEnum.UNKNOWN_ERROR.getMessage())
-                .setCode(ResultEnum.UNKNOWN_ERROR.getCode());
+        // 如果非404，那就是500错误，则抛出设定的枚举类中的系统错误信息
+        return new ResponseInfo()
+                .setMessage(ResultEnum.SYSTEM_ERROR.getMessage())
+                .setCode(ResultEnum.SYSTEM_ERROR.getCode());
     }
 
 }
