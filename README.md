@@ -36,6 +36,7 @@
 - [SpringBoot Dockerfile 实践示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-dockerfile)
 - [SpringBoot 使用 Caffeine 本地缓存](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-caffeine-cache-example)
 - [SpringBoot 集成 Apollo 配置中心示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-apollo-demo)
+- [SpringBoot 集成 Mybatis 操作数据库示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-mybatis-example)
 - [SpringBoot 操作 ElasticSearch 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-elasticsearch-example)
 - [SpringBoot 使用 Redis 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redisson-lock-example)
 - [SpringBoot 使用 Zookeeper 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-zookeeper-lock-example)

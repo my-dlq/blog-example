@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.mydlq.mappers.many.UserInfoMapper">
+
+    <!--结果映射参数设置-->
+    <resultMap id="UserInfoResultMap" type="club.mydlq.model.many.UserInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <association property="baseInfo" javaType="club.mydlq.model.single.BaseInfo">
+            <id column="baseId" jdbcType="INTEGER" property="id"/>
+            <result column="userId" jdbcType="INTEGER" property="userId"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="sex" jdbcType="VARCHAR" property="sex"/>
+            <result column="birthday" jdbcType="DATE" property="birthday"/>
+            <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        </association>
+    </resultMap>
+
+    <!-- 查询全部用户信息列表 -->
+    <select id="selectAll" resultMap="UserInfoResultMap">
+        SELECT A.id, A.group_id, A.username, A.password,
+               B.id AS baseId, B.user_id AS userId, B.name, B.sex, B.birthday, B.remark
+        FROM `user` AS A,
+             `base_info` AS B
+    </select>
+
+    <!--查询用户信息-->
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="UserInfoResultMap">
+        SELECT A.id, A.group_id, A.username, A.password,
+               B.id AS baseId, B.user_id AS userId, B.name, B.sex, B.birthday, B.remark
+        FROM `user` AS A,
+             `base_info` AS B
+        WHERE A.id = B.user_id AND
+              A.id = #{userId, jdbcType=INTEGER}
+    </select>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.mydlq.mappers.many.GroupUserRoleMapper">
+
+    <!--结果映射参数设置-->
+    <resultMap id="GroupUserRoleResultMap" type="club.mydlq.model.many.GroupUserRole">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <collection property="users" ofType="club.mydlq.model.many.UserRole">
+            <id column="userId" jdbcType="INTEGER" property="id"/>
+            <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+            <result column="username" jdbcType="VARCHAR" property="username"/>
+            <result column="password" jdbcType="VARCHAR" property="password"/>
+            <collection property="roles" ofType="club.mydlq.model.single.Role">
+                <id column="roleId" jdbcType="INTEGER" property="id"/>
+                <result column="roleName" jdbcType="VARCHAR" property="name"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <!--根据用户组ID查询用户和用户关联的全部角色-->
+    <select id="selectUserAndRoleByGroupId" parameterType="java.lang.Integer" resultMap="GroupUserRoleResultMap">
+        select A.id, A.name,
+               B.id AS userId, B.group_id, B.username, B.password,
+               C.id AS roleId, C.name AS roleName
+        FROM `group` AS A,
+             `user` AS B,
+             `role` AS C,
+             `user_role` AS D
+        WHERE A.id = B.group_id AND
+              B.id = D.user_id AND
+              C.id = D.role_id AND
+              A.id = #{groupId, jdbcType=INTEGER}
+    </select>
+
+</mapper>

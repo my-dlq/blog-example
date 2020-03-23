@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--User 表操作，单表操作示例-->
+<mapper namespace="club.mydlq.mappers.single.UserBatchMapper">
+
+    <!--结果映射参数设置-->
+    <resultMap id="UserResultMap" type="club.mydlq.model.single.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+    </resultMap>
+
+    <!--批量查询-->
+    <select id="selectBatch" parameterType="java.util.List" resultMap="UserResultMap">
+        SELECT id, group_id, username, password
+        FROM `user`
+        WHERE id IN
+        <trim prefix="(" suffix=")">
+            <foreach collection="ids" index="index" item="id" separator=",">
+                #{id}
+            </foreach>
+        </trim>
+    </select>
+
+    <!-- 批量插入用户 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO `user` (`group_id`, `username`, `password`)
+        VALUES
+        <foreach collection="userList" item="user" index="index" separator=",">
+            (
+            #{user.groupId, jdbcType=INTEGER},
+            #{user.username, jdbcType=VARCHAR},
+            #{user.password, jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 批量更新用户 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="userList" item="user" index="index" separator=";">
+            UPDATE `user`
+            <set>
+                <if test="user.groupId != null">group_id=#{user.groupId, jdbcType=INTEGER},</if>
+                <if test="user.username != null">username=#{user.username, jdbcType=VARCHAR},</if>
+                <if test="user.password != null">password=#{user.password, jdbcType=VARCHAR},</if>
+            </set>
+            WHERE id = #{user.id, jdbcType=INTEGER}
+        </foreach>
+    </update>
+
+    <!-- 批量删除用户信息 -->
+    <delete id="deleteBatch" parameterType="java.util.List">
+        DELETE
+        FROM `user`
+        WHERE id IN
+        <trim prefix="(" suffix=")">
+            <foreach collection="ids" index="index" item="id" separator=",">
+                #{id}
+            </foreach>
+        </trim>
+    </delete>
+
+</mapper>

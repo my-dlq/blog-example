@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--User 表操作，单表操作示例-->
+<mapper namespace="club.mydlq.mappers.single.UserMapper">
+
+    <!--结果映射参数设置-->
+    <resultMap id="UserResultMap" type="club.mydlq.model.single.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+    </resultMap>
+
+    <!-- 查询全部用户列表 -->
+    <select id="selectAll" resultMap="UserResultMap">
+        SELECT id, group_id, username, password
+        FROM `user`
+    </select>
+
+    <!--根据主键ID查询用户-->
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="UserResultMap">
+        SELECT id, group_id, username, password
+        FROM `user`
+        WHERE id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <!--根据用户名模糊查询用户-->
+    <select id="selectByUsername" parameterType="java.lang.String" resultMap="UserResultMap">
+        SELECT id, group_id, username, password
+        FROM `user`
+        WHERE username LIKE concat('%', #{username, jdbcType=INTEGER}, '%')
+    </select>
+
+    <!-- 插入用户 -->
+    <insert id="insert" parameterType="club.mydlq.model.single.User">
+        INSERT INTO `user`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">group_id,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">#{groupId, jdbcType=INTEGER},</if>
+            <if test="username != null">#{username, jdbcType=VARCHAR},</if>
+            <if test="password != null">#{password, jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+
+    <!-- 插入用户并返回主键ID -->
+    <insert id="insertAndReturnId" parameterType="club.mydlq.model.single.User"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO `user`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">group_id,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">#{groupId, jdbcType=INTEGER},</if>
+            <if test="username != null">#{username, jdbcType=VARCHAR},</if>
+            <if test="password != null">#{password, jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+
+    <!--更新用户-->
+    <update id="updateById" parameterType="club.mydlq.model.single.User">
+        UPDATE `user`
+        <set>
+            <if test="groupId != null">group_id = #{groupId, jdbcType=INTEGER},</if>
+            <if test="username != null">username = #{username, jdbcType=VARCHAR},</if>
+            <if test="password != null">password = #{password, jdbcType=VARCHAR},</if>
+        </set>
+        WHERE id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除用户信息 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE
+        FROM `user`
+        WHERE id = #{id, jdbcType=INTEGER}
+    </delete>
+
+</mapper>
