@@ -25,19 +25,19 @@ public class UserBatchController {
         return userBatchMapper.selectBatch(ids);
     }
 
-    @PostMapping("/save")
+    @PostMapping
     @ApiOperation(value = "批量插入\"用户\"", notes = "测试批量插入\"用户\"")
     public Object saveUserBatch(@RequestBody List<User> userList) {
         return userBatchMapper.insertBatch(userList);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     @ApiOperation(value = "批量更新\"用户\"", notes = "测试批量更新\"用户\"")
     public Object updateUserBatch(@RequestBody List<User> userList) {
         return userBatchMapper.updateBatch(userList);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     @ApiOperation(value = "批量删除\"用户\"", notes = "测试批量删除\"用户\"")
     public Object deleteUserBatch(@RequestBody List<Integer> ids) {
         return userBatchMapper.deleteBatch(ids);

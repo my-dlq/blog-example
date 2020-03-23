@@ -19,3 +19,6 @@ spring:
 mybatis:
   # mapper.xml文件位置
   mapper-locations: classpath:mappers/*.xml
+
+server:
+  port: 8888
