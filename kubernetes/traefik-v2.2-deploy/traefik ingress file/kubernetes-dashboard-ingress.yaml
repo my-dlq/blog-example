@@ -8,6 +8,8 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
+  tls:
+  - secretName: cloud-mydlq-tls  
   rules:
   - host: cloud.mydlq.club                               
     http:
