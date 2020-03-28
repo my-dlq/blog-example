@@ -23,7 +23,6 @@ rules:
   - apiGroups: ["traefik.containo.us"]
     resources: ["middlewares","ingressroutes","ingressroutetcps","tlsoptions","ingressrouteudps","traefikservices","tlsstores"]
     verbs: ["get","list","watch"]
-
 ---
 ## ClusterRoleBinding
 kind: ClusterRoleBinding
