@@ -59,14 +59,19 @@ spec:
             resourceFieldRef:
               resource: limits.memory
               divisor: 1Mi
+        - name: "JAVA_TOOL_OPTIONS"
+          value: "
+                  -Dfile.encoding=UTF-8
+                  -Dsun.jnu.encoding=UTF-8
+                 "      
         - name: "JAVA_OPTS"  #设置变量，指定时区和 jenkins slave 执行者设置
           value: " 
-                 -Xmx$(LIMITS_MEMORY)m 
-                 -XshowSettings:vm 
-                   -Dhudson.slaves.NodeProvisioner.initialDelay=0
-                   -Dhudson.slaves.NodeProvisioner.MARGIN=50
-                   -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
-                   -Duser.timezone=Asia/Shanghai
+                  -Xmx$(LIMITS_MEMORY)m 
+                  -XshowSettings:vm 
+                  -Dhudson.slaves.NodeProvisioner.initialDelay=0
+                  -Dhudson.slaves.NodeProvisioner.MARGIN=50
+                  -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
+                  -Duser.timezone=Asia/Shanghai
                  "    
         - name: "JENKINS_OPTS"
           value: "--prefix=/jenkins"         #设置路径前缀加上 Jenkins
