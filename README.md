@@ -8,6 +8,8 @@
 - [Traefik Ingress V2.1 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.1-deploy)
 - [Traefik Ingress V2.2 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.2-deploy)
 - [Prometheus Operator 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/prometheus-operator)
+- [Kubernetes 部署 Redis 数据库(单节点)部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-redis)
+- [Kubernetes 部署 Mysql 数据库(单节点)部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-mysql)
 - [Kubernetes 部署 SonarQube 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonarqube-deploy)
 - [Kubernetes 部署 Sonatype Nexus3 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonatype-nexus-deploy)
 - [Kubernetes 部署 NFS Provisioner 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/nfs-provisioner-deploy)
