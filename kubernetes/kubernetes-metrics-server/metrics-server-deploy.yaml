@@ -32,17 +32,17 @@ spec:
       labels:
         k8s-app: metrics-server
     spec:
+      hostNetwork: true
       serviceAccountName: metrics-server
       containers:
       - name: metrics-server
         image: registry.aliyuncs.com/google_containers/metrics-server-amd64:v0.3.6
         imagePullPolicy: IfNotPresent
-        command:
-          - /metrics-server
+        args:
           - --cert-dir=/tmp
           - --secure-port=4443
           - --kubelet-insecure-tls
-          - --kubelet-preferred-address-types=InternalIP
+          - --kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname
         ports:
         - name: main-port
           containerPort: 4443
@@ -61,9 +61,16 @@ spec:
         volumeMounts:
         - name: tmp-dir
           mountPath: /tmp
+        - name: localtime
+          readOnly: true
+          mountPath: /etc/localtime
       volumes:
       - name: tmp-dir
         emptyDir: {}
+      - name: localtime
+        hostPath:
+          type: File
+          path: /etc/localtime
       nodeSelector:
         kubernetes.io/os: linux
         kubernetes.io/arch: "amd64"
