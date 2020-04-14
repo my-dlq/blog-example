@@ -43,3 +43,10 @@ data:
             User-Agent: redact
             Authorization: drop
             Content-Type: keep
+    #tracing:                     ## 链路追踪配置,支持 zipkin、datadog、jaeger、instana、haystack 等 
+    #  serviceName:               ## 设置服务名称（在链路追踪端收集后显示的服务名）
+    #  zipkin:                    ## zipkin配置
+    #    sameSpan: true           ## 是否启用 Zipkin SameSpan RPC 类型追踪方式
+    #    id128Bit: true           ## 是否启用 Zipkin 128bit 的跟踪 ID
+    #    sampleRate: 0.1          ## 设置链路日志采样率（可以配置0.0到1.0之间的值）
+    #    httpEndpoint: http://localhost:9411/api/v2/spans     ## 配置 Zipkin Server 端点
