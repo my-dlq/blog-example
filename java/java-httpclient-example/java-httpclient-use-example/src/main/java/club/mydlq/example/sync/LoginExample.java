@@ -25,6 +25,8 @@ public class LoginExample {
         try {
             // 创建 Http 请求
             ClassicHttpRequest request = ClassicRequestBuilder.post("http://localhost:8080/login/from")
+                    // 设置编码，防止中文乱码
+                    .setCharset(StandardCharsets.UTF_8)  
                     .addParameter("t_username", "admin")
                     .addParameter("t_password", "123456")
                     .build();
