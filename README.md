@@ -47,6 +47,8 @@
 - [SpringBoot 多种读取配置文件中参数的方式示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-read-config-example)
 - [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-kafka)
 - [SpringBoot 使用 SpringCache 操作 Redis 进行缓存示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-cache-example)
+- [SpringBoot 中使用 Gson 替换默认 Json 组件 Jackson 示例](https://github.com/my-dlq/blog-example/tree/master/springboot-json-example/springboot-json-example)
+- [SpringBoot 中使用 Fastjson 替换默认 Json 组件 Jackson 示例](https://github.com/my-dlq/blog-example/tree/master/springboot-json-example/springboot-fastjson-example)
 - [SpringBoot 使用 @Valid + Exception 全局异常处理来接口参数效验示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-valid-demo)
 
 ### SpringCloud
