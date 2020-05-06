@@ -42,7 +42,10 @@ public class HttpClientUtil {
                 .build();
         // Http 连接池
         PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager(registry);
-        poolingHttpClientConnectionManager.setDefaultSocketConfig(SocketConfig.custom().setTcpNoDelay(true).build());
+        poolingHttpClientConnectionManager.setDefaultSocketConfig(SocketConfig.custom()
+                .setSoTimeout(30,TimeUnit.SECONDS)
+                .setTcpNoDelay(true).build()
+        );
         poolingHttpClientConnectionManager.setMaxTotal(200);
         poolingHttpClientConnectionManager.setDefaultMaxPerRoute(200);
         poolingHttpClientConnectionManager.setValidateAfterInactivity(TimeValue.ofMinutes(5));
