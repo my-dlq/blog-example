@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
 import java.util.Date;
 
 /**
@@ -18,6 +17,9 @@ import java.util.Date;
 @Accessors(chain = true)
 public class User {
 
+    /**
+     * 使用 @MongoID 能更清晰的指定 _id 主键
+     */
     @MongoId
     private String id;
     private String name;
