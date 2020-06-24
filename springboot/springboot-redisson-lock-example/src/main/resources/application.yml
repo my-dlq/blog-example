@@ -1,4 +1,4 @@
-### ÔØÈë Redisson ÅäÖÃÎÄ¼ş
+### Redisson Config
 spring:
   redis:
     redisson:
