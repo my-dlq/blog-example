@@ -1,7 +1,7 @@
 zookeeper:
-  address: 127.0.0.1:2181     #zookeeper ServerµØÖ·,Èç¹ûÓĞ¶à¸ö,Ê¹ÓÃ","¸ôÀë
-                              #ÀıÈç ip1:port1,ip2:port2,ip3:port3
-  retryCount: 5               #ÖØÊÔ´ÎÊı
-  elapsedTimeMs: 5000         #ÖØÊÔ¼ä¸ôÊ±¼ä
-  sessionTimeoutMs: 30000     #Session³¬Ê±Ê±¼ä
-  connectionTimeoutMs: 10000  #Á¬½Ó³¬Ê±Ê±¼ä
+  address: 127.0.0.1:2181     #zookeeper Serveråœ°å€,å¦‚æœæœ‰å¤šä¸ª,ä½¿ç”¨","éš”ç¦»
+  #ä¾‹å¦‚ ip1:port1,ip2:port2,ip3:port3
+  retryCount: 5               #é‡è¯•æ¬¡æ•°
+  elapsedTimeMs: 5000         #é‡è¯•é—´éš”æ—¶é—´
+  sessionTimeoutMs: 30000     #Sessionè¶…æ—¶æ—¶é—´
+  connectionTimeoutMs: 10000  #è¿æ¥è¶…æ—¶æ—¶é—´

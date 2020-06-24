@@ -8,6 +8,8 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 
 /**
  * 初始化 Zookeeper Curator 客户端
+ *
+ * @author mydlq
  */
 @Configuration
 public class ZookeeperConfig {

@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 从配置文件中读取 Zookeeper Server 连接参数
+ *
+ * @author mydlq
  */
 @Data
 @Configuration
