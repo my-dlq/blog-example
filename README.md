@@ -38,6 +38,7 @@
 - [SpringBoot 使用 Swagger2 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-example)
 - [SpringBoot 操作 Redis 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-example)
 - [SpringBoot Dockerfile 实践示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-dockerfile)
+- [SpringBoot 实现 WebSocket 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-websocket-example)
 - [SpringBoot 使用 Caffeine 本地缓存](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-caffeine-cache-example)
 - [SpringBoot 集成 Apollo 配置中心示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-apollo-demo)
 - [SpringBoot 集成 Mybatis 操作数据库示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-mybatis-example)
