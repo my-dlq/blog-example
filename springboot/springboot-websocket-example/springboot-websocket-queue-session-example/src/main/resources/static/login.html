@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello WebSocket</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+    <div class="Container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <h1 class="page-header">用户登录</h1>
+                <form role="form" method="post" action="/login">
+                    <div class="form-group">
+                        <label for="username">用户名：</label>
+                        <input type="text" class="form-control" placeholder="请输入账号" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密 码：</label>
+                        <input type="password" class="form-control" placeholder="请输入密码" id="password" name="password">
+                    </div>
+                    <div class="checkbox" style="text-align:center;">
+                        <br/>
+                        <input type="submit" value="登录" class="btn"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
