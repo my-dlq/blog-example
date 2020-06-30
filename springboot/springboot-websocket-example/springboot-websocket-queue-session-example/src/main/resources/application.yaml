@@ -1,3 +1,0 @@
-spring:
-  application:
-    name: springboot-websocket-queue-session-example
