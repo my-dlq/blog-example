@@ -32,9 +32,27 @@ spec:
       labels:
         app: redis
     spec:     
+      initContainers:
+        - name: system-init 
+          image: busybox:1.32
+          imagePullPolicy: IfNotPresent
+          command: 
+            - "sh"
+            - "-c"
+            - "echo 2000 > /proc/sys/net/core/somaxconn && echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+          securityContext:
+            privileged: true
+            runAsUser: 0
+          volumeMounts:
+            - name: sys
+              mountPath: /sys
       containers:
       - name: redis
         image: redis:5.0.8
+        command: 
+          - "sh"
+          - "-c"
+          - "redis-server /usr/local/etc/redis/redis.conf"
         ports:
         - containerPort: 6379
         resources:
@@ -72,4 +90,7 @@ spec:
           claimName: redis
       - name: config      
         configMap:
-          name: redis-config
+          name: redis-
+      - name: sys
+        hostPath: 
+          path: /sys
