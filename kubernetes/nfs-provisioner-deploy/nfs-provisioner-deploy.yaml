@@ -35,3 +35,4 @@ spec:
           nfs:
             server: 192.168.2.11    #---NFS服务器地址
             path: /nfs/data         #---NFS服务器目录
+            
