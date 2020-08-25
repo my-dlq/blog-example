@@ -87,3 +87,4 @@ spec:
         - operator: "Exists"
       nodeSelector:             ## 设置node筛选器，在特定label的节点上启动
         IngressProxy: "true"
+        
