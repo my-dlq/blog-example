@@ -29,6 +29,7 @@
 - [Java 中的加密与签名示例](https://github.com/my-dlq/blog-example/tree/master/java/java-encrypt-example)
 - [Java 8 新增的日期时间 API 使用示例](https://github.com/my-dlq/blog-example/tree/master/java/java-time-example)
 - [Java 中使用 HttpClinet 工具详解示例](https://github.com/my-dlq/blog-example/tree/master/java/java-httpclient-example)
+- [Java 中的 Snowflake 生成分布式 ID 示例](https://github.com/my-dlq/blog-example/tree/master/java/java-distributed-id-snowflake)
 - [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java/java-object-poole-example)
 
 ###  SpringBoot
