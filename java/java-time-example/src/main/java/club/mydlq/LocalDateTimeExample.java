@@ -42,7 +42,9 @@ public class LocalDateTimeExample {
         // 从时间日期中获取(纳秒)信息
         int nano = localDateTime.getNano();
         // 使用指定的格式化程序格式化时间日期
-        String formatLocalDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
+        String formatLocalDateTimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        // 使用制度的格式格式化字符串到时间日期
+        LocalDateTime fromatLocalDateTime = LocalDateTime.parse("2020-09-18 10:30:50",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         // 指定年、月、日、时、分参数获取日期时间实例
         LocalDateTime ymdhmLocalDateTime = LocalDateTime.of(2020, 6, 18, 12, 30);
         // 指定年、月、日、时、分、秒参数获取日期时间实例
@@ -62,7 +64,8 @@ public class LocalDateTimeExample {
         System.out.println("从时间日期中获取(秒)信息：" + second);
         System.out.println("从时间日期中获取(纳秒)信息：" + nano);
         System.out.println("在默认时区中从系统时钟获取当前日期时间：" + localDateTime);
-        System.out.println("使用指定的格式化程序格式化日期时间：" + formatLocalDateTime);
+        System.out.println("使用指定的格式化程序格式化时间日期：" + formatLocalDateTimeStr);
+        System.out.println("使用制度的格式格式化字符串到时间日期：" + fromatLocalDateTime);
         System.out.println("指定年、月、日、时、分参数获取日期时间实例：" + ymdhmLocalDateTime);
         System.out.println("指定年、月、日、时、分、秒参数获取日期时间实例：" + ymdhmsLocalDateTime);
         System.out.println("指定使用纪元时(秒)参数获取时间实例：" + epochSecondLocalDateTime);
