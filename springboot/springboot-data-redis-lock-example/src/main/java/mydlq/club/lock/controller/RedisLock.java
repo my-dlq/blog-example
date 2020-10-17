@@ -34,7 +34,7 @@ public class RedisLock {
     public boolean tryLock(String key, String value, int expireTime, TimeUnit timeUnit) {
         Boolean result = redisTemplate.opsForValue().setIfAbsent(key, value, expireTime, timeUnit);
         if (Boolean.TRUE.equals(result)) {
-            log.error("申请锁(" + key + "|" + value + ")成功");
+            log.info("申请锁(" + key + "|" + value + ")成功");
             return true;
         }
         log.error("申请锁(" + key + "|" + value + ")失败");
