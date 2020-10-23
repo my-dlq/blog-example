@@ -1,7 +1,7 @@
 spring:
   redis:
     ssl: false
-    host: 192.168.2.21
+    host: 127.0.0.1
     port: 6379
     database: 0
     timeout: 1000

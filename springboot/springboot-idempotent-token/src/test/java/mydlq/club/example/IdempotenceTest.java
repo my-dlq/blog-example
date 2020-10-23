@@ -32,7 +32,7 @@ public class IdempotenceTest {
                 .getResponse().getContentAsString();
         log.info("获取的 Token 串：{}", token);
         // 循环调用 5 次进行测试
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             log.info("第{}次调用测试接口", i);
             // 调用验证接口并打印结果
             String result = mockMvc.perform(MockMvcRequestBuilders.post("/test")
