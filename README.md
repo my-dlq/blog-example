@@ -37,6 +37,7 @@
 - [SpringBoot 事务管理示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-transaction-example)
 - [SpringBoot 应用构建 WAR 包](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-war-example)
 - [SpringBoot 配置过滤器示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-filter-example)
+- [SpringBoot 接口幂等性的实现](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-idempotent-token)
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-exception-handler)
 - [SpringBoot 使用 Swagger2 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-example)
 - [SpringBoot 操作 Redis 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-example)
