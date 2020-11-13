@@ -2,17 +2,18 @@
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    k8s-app: metrics-server
   name: metrics-server
   namespace: kube-system
-  labels:
-    kubernetes.io/name: "Metrics-server"
-    kubernetes.io/cluster-service: "true"
 spec:
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: https
   selector:
     k8s-app: metrics-server
-  ports:
-  - port: 443
-    targetPort: 4443
 ---
 ## Deployment
 apiVersion: apps/v1
@@ -26,6 +27,9 @@ spec:
   selector:
     matchLabels:
       k8s-app: metrics-server
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
   template:
     metadata:
       name: metrics-server
@@ -36,15 +40,30 @@ spec:
       serviceAccountName: metrics-server
       containers:
       - name: metrics-server
-        image: registry.aliyuncs.com/google_containers/metrics-server-amd64:v0.3.6
+        image: bitnami/metrics-server:0.4.0
         imagePullPolicy: IfNotPresent
         args:
           - --cert-dir=/tmp
           - --secure-port=4443
           - --kubelet-insecure-tls
+          - --kubelet-use-node-status-port
           - --kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /livez
+            port: https
+            scheme: HTTPS
+          periodSeconds: 10
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /readyz
+            port: https
+            scheme: HTTPS
+          periodSeconds: 10
         ports:
-        - name: main-port
+        - name: https
           containerPort: 4443
           protocol: TCP
         securityContext:
@@ -73,4 +92,3 @@ spec:
           path: /etc/localtime
       nodeSelector:
         kubernetes.io/os: linux
-        kubernetes.io/arch: "amd64"
