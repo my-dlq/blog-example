@@ -40,7 +40,7 @@ spec:
       serviceAccountName: metrics-server
       containers:
       - name: metrics-server
-        image: bitnami/metrics-server:0.4.0
+        image: bitnami/metrics-server:0.4.1
         imagePullPolicy: IfNotPresent
         args:
           - --cert-dir=/tmp
