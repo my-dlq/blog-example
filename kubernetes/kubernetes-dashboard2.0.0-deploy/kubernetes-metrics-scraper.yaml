@@ -37,7 +37,7 @@ spec:
       serviceAccountName: kubernetes-dashboard
       containers:
         - name: dashboard-metrics-scraper
-          image: kubernetesui/metrics-scraper:v1.0.4
+          image: kubernetesui/metrics-scraper:v1.0.6
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
