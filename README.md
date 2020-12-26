@@ -10,6 +10,7 @@
 - [Kubernetes 部署 SonarQube 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonarqube-deploy)
 - [Kubernetes 部署 Metrics Server 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-metrics-server)
 - [Kubernetes 部署 DashBoard 2.0.0 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-dashboard2.0.0-deploy)
+- [Kubernetes 部署 DashBoard 2.1.0 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-dashboard2.1.0-deploy)
 - [Kubernetes 部署 Sonatype Nexus3 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonatype-nexus-deploy)
 - [Kubernetes 部署 NFS Provisioner 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/nfs-provisioner-deploy)
 - [Kubernetes 部署 Redis 数据库(单节点)部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-redis)
@@ -33,8 +34,6 @@
 - [Java 使用 Commons Pool 构建对象池示例](https://github.com/my-dlq/blog-example/tree/master/java/java-object-poole-example)
 
 ###  SpringBoot
-
-
 
 - [SpringBoot 事务管理示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-transaction-example)
 - [SpringBoot 应用构建 WAR 包](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-war-example)

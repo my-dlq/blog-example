@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubernetes-dashboard-route
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: cloud-mydlq-tls
+  routes:
+    - match: Host(`cloud.mydlq.club`) 
+      kind: Rule
+      services:
+        - name: kubernetes-dashboard
+          port: 443
