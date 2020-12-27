@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kubernetes-dashboard-ingress
@@ -9,12 +9,17 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-  - secretName: cloud-mydlq-tls  
+  - hosts:
+      - cloud.mydlq.club
+    secretName: cloud-mydlq-tls
   rules:
-  - host: cloud.mydlq.club                               
+  - host: cloud.mydlq.club 
     http:
       paths:
-      - path: /                                     
+      - path: /
+        pathType: Prefix
         backend:
-          serviceName: kubernetes-dashboard
-          servicePort: 443
+          service:
+            name: kubernetes-dashboard
+            port:
+              number: 443
