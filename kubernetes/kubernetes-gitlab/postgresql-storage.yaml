@@ -1,0 +1,34 @@
+## PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgresql
+  labels:
+    app: postgresql
+spec:
+  capacity:          
+    storage: 20Gi
+  accessModes:       
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+  - hard
+  - nfsvers=4.1    
+  nfs:
+    server: 192.168.2.11
+    path: /nfs/gitlab/postgresql
+---
+## PVC
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgresql
+spec:
+  resources:
+    requests:
+      storage: 20Gi 
+  accessModes:
+  - ReadWriteOnce
+  selector:
+    matchLabels:
+      app: postgresql

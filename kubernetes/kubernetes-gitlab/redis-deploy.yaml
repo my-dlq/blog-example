@@ -1,0 +1,76 @@
+## Service
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitlab-redis
+  labels:
+    name: gitlab-redis
+spec:
+  type: ClusterIP
+  ports:
+    - name: redis
+      protocol: TCP
+      port: 6379
+      targetPort: redis
+  selector:
+    name: gitlab-redis
+---
+## Deployment
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: gitlab-redis
+  labels:
+    name: gitlab-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: gitlab-redis
+  template:
+    metadata:
+      name: gitlab-redis
+      labels:
+        name: gitlab-redis
+    spec:
+      containers:
+      - name: gitlab-redis
+        image: 'sameersbn/redis:4.0.9-3'
+        ports:
+        - name: redis
+          containerPort: 6379
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 2Gi
+          requests:
+            cpu: 1000m
+            memory: 2Gi
+        volumeMounts:
+          - name: data
+            mountPath: /var/lib/redis
+        livenessProbe:
+          exec:
+            command:
+              - redis-cli
+              - ping
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+              - redis-cli
+              - ping
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: redis

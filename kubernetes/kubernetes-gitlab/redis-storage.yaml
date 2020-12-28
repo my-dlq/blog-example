@@ -1,0 +1,34 @@
+## PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  capacity:          
+    storage: 5Gi
+  accessModes:       
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+  - hard
+  - nfsvers=4.1
+  nfs:               
+    server: 192.168.2.11
+    path: /nfs/gitlab/redis      
+---
+## PVC
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: redis
+spec:
+  resources:
+    requests:
+      storage: 5Gi      
+  accessModes:
+  - ReadWriteOnce
+  selector:
+    matchLabels:
+      app: redis

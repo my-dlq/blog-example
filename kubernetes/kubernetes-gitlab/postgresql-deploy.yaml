@@ -1,0 +1,80 @@
+## Service
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitlab-postgresql
+  labels:
+    name: gitlab-postgresql
+spec:
+  ports:
+    - name: postgres
+      protocol: TCP
+      port: 5432
+      targetPort: postgres
+  selector:
+    name: postgresql
+  type: ClusterIP
+---
+## Deployment
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: postgresql
+  labels:
+    name: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgresql
+  template:
+    metadata:
+      name: postgresql
+      labels:
+        name: postgresql
+    spec:
+      containers:
+      - name: postgresql
+        image: sameersbn/postgresql:12-20200524
+        ports:
+        - name: postgres
+          containerPort: 5432
+        env:
+        - name: DB_USER
+          value: gitlab
+        - name: DB_PASS
+          value: admin@mydlq
+        - name: DB_NAME
+          value: gitlabhq_production
+        - name: DB_EXTENSION
+          value: 'pg_trgm,btree_gist'
+        resources: 
+          requests:
+            cpu: 2
+            memory: 2Gi
+          limits:
+            cpu: 2
+            memory: 2Gi
+        livenessProbe:
+          exec:
+            command: ["pg_isready","-h","localhost","-U","postgres"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command: ["pg_isready","-h","localhost","-U","postgres"]
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: postgresql
