@@ -1,0 +1,50 @@
+kind: CronJob
+apiVersion: batch/v1beta1
+metadata:
+  name: data-backup
+  namespace: devops
+  labels:
+    app: data-backup
+spec:
+  schedule: 0 4 * * *
+  concurrencyPolicy: Allow
+  suspend: false
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: data
+              nfs:
+                server: 192.168.2.11
+                path: /data/master/
+            - name: data-backup
+              nfs:
+                server: 192.168.2.12
+                path: /data/backup/
+            - name: time-zone
+              hostPath:
+                path: /etc/localtime
+          containers:
+            - name: data-backup
+              image: 'busybox:1.32.0'
+              command:
+                - sh
+                - '-c'
+              args:
+                - |
+                  tar -zcvf /data-backup/xxx-$(date +%Y%m%d).tar.gz /data
+                  find /data-backup/xxx-* -mtime +2 -delete
+              volumeMounts:
+                - name: data                #应用运行的数据的存储的 NFS 服务器地址
+                  mountPath: /data
+                - name: data-backup         #存储备份数据的 NFS 服务器地址     
+                  mountPath: /data-backup
+                - name: time-zone           #挂载系统时区，防止时区产生的影响
+                  mountPath: /etc/localtime
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              imagePullPolicy: IfNotPresent
+          restartPolicy: Never
