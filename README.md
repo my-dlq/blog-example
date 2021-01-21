@@ -8,6 +8,7 @@
 - [Traefik Ingress V2.2 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.2-deploy)
 - [Prometheus Operator 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/prometheus-operator)
 - [Kubernetes 部署 Gitlab 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-gitlab)
+- [Kubernetes 部署 Nacos 集群部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/nacos-deploy)
 - [Kubernetes 部署 SonarQube 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonarqube-deploy)
 - [Kubernetes 部署 Metrics Server 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-metrics-server)
 - [Kubernetes 使用 CronJob 进行数据备份示例](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-cronjob-example)
