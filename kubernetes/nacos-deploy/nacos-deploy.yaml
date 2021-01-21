@@ -1,0 +1,117 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nacos-headless
+  labels:
+    app: nacos
+spec:
+  ports:
+    - name: server
+      port: 8848
+      targetPort: 8848
+    - name: rpc
+      port: 7848
+      targetPort: 7848
+  clusterIP: None
+  selector:
+    app: nacos
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nacos
+spec:
+  serviceName: nacos-headless
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nacos
+    spec:
+      terminationGracePeriodSeconds: 10  #配置优雅停机时间
+      serviceAccountName: nacos-admin    #分配服务账户给应用，方便应用能够获取一定的权限
+      initContainers:                    #初始化镜像执行初始化操作
+        - name: peer-finder-plugin-install
+          image: nacos/nacos-peer-finder-plugin:1.0
+          volumeMounts:
+            - mountPath: "/home/nacos/plugins/peer-finder"
+              name: plugindir
+      affinity:    #配置Pod反亲和性，放置Pod都起在同一节点上（如果都在一个节点，节点宕机将会使全部实例不可用）       
+        podAntiAffinity:    
+          # requiredDuringSchedulingIgnoredDuringExecution: #硬策略，pod一定不能启在同一个节点上
+          #   - topologyKey: "kubernetes.io/hostname"
+          #     labelSelector:
+          #       matchExpressions:
+          #         - key: "app"
+          #           operator: In
+          #           values:
+          #             - nacos
+          preferredDuringSchedulingIgnoredDuringExecution:  #软策略，尽可能pod不启在同一个节点上
+            - weight: 100 
+              podAffinityTerm:
+                topologyKey: "kubernetes.io/hostname"
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - nacos  
+      containers:
+        - name: nacos
+          image: nacos/nacos-server:1.4.1
+          resources:
+            limits:
+              cpu: 2
+              memory: "2Gi"
+            requests:
+              cpu: 100m
+              memory: "1Gi"
+          ports:
+            - name: client-port
+              containerPort: 8848
+            - name: rpc
+              containerPort: 7848
+          envFrom:
+            - configMapRef:
+                name: nacos-config
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: plugindir
+              mountPath: /home/nacos/plugins/peer-finder
+            - name: datadir
+              mountPath: /home/nacos/data
+            - name: logdir
+              mountPath: /home/nacos/logs
+  volumeClaimTemplates:
+    - metadata:
+        name: plugindir
+      spec:
+        storageClassName: nfs-storage #指定storageclass名称，这里需要根据你的K8S集群进行修改
+        accessModes: ["ReadWriteMany"]
+        resources:
+          requests:
+            storage: 5Gi
+    - metadata:
+        name: datadir
+      spec:
+        storageClassName: nfs-storage  
+        accessModes: ["ReadWriteMany"]
+        resources:
+          requests:
+            storage: 5Gi
+    - metadata:
+        name: logdir
+      spec:
+        storageClassName: nfs-storage
+        accessModes: ["ReadWriteMany"]
+        resources:
+          requests:
+            storage: 5Gi
+  selector:
+    matchLabels:
+      app: nacos

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nacos-config
+data:
+  SERVICE_NAME: "nacos-headless"
+  DOMAIN_NAME: "cluster.local"
+  NACOS_REPLICAS: "3"
+  PREFER_HOST_MODE: "hostname"
+  NACOS_APPLICATION_PORT: "8848"
+  NACOS_SERVER_PORT: "8848"
+  JVM_XMX: "2g"
+  JVM_XMS: "2g"
+  JVM_XMN: "1g"
+  MYSQL_SERVICE_HOST: "mysql"
+  MYSQL_SERVICE_DB_NAME: "nacos_config_cluster"
+  MYSQL_SERVICE_PORT: "3306"
+  MYSQL_SERVICE_USER: "root"
+  MYSQL_SERVICE_PASSWORD: "123456"
