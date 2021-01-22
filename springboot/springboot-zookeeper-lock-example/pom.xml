@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
-            <version>5.0.0</version>
+            <version>5.1.0</version>
         </dependency>
         <!-- 创建 Zookeeper 客户端依赖，一定要和 Zookeeper Server 版本保持一致 -->
         <dependency>

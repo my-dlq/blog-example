@@ -1,7 +1,7 @@
 package mydlq.club.lock.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.curator.framework.CuratorFramework;
+import mydlq.club.lock.utils.LockUtil;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +19,15 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class LockController {
 
-    /** curatorFramework对象 */
+    /**
+     * curatorFramework对象
+     */
     @Autowired
-    CuratorFramework curatorFramework;
+    private LockUtil lockUtil;
 
-    /** 线程池 */
+    /**
+     * 线程池
+     */
     ExecutorService executor = Executors.newFixedThreadPool(10);
 
     @GetMapping("/lock")
@@ -31,16 +35,17 @@ public class LockController {
         for (int i = 0; i < 1000; i++) {
             executor.submit(() -> {
                 try {
-                    // 创建锁对象
-                    InterProcessMutex interProcessMutex = new InterProcessMutex(curatorFramework, "/lock-space123");
+                    String key = "test";
                     // 获取锁
-                    interProcessMutex.acquire(10, TimeUnit.SECONDS);
-                    // 如果获取锁成功，则执行对应逻辑
-                    log.info("获取分布式锁，执行对应逻辑1");
-                    log.info("获取分布式锁，执行对应逻辑2");
-                    log.info("获取分布式锁，执行对应逻辑3");
-                    // 释放锁
-                    interProcessMutex.release();
+                    InterProcessMutex lock = lockUtil.tryLock(key, 10, TimeUnit.SECONDS);
+                    if (lock != null) {
+                        // 如果获取锁成功，则执行对应逻辑
+                        log.info("获取分布式锁，执行对应逻辑1");
+                        log.info("获取分布式锁，执行对应逻辑2");
+                        log.info("获取分布式锁，执行对应逻辑3");
+                        // 释放锁
+                        lockUtil.unLock(key, lock);
+                    }
                 } catch (Exception e) {
                     log.error("", e);
                 }
