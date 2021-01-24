@@ -43,6 +43,7 @@
 - [SpringBoot 配置过滤器示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-filter-example)
 - [SpringBoot 接口幂等性的实现](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-idempotent-token)
 - [SpringBoot 全局异常处理详解](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-exception-handler)
+- [SpringBoot 实现多源数据库示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-mybatis-many-database)
 - [SpringBoot 使用 Swagger2 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-example)
 - [SpringBoot 操作 Redis 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-example)
 - [SpringBoot Dockerfile 实践示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-dockerfile)
