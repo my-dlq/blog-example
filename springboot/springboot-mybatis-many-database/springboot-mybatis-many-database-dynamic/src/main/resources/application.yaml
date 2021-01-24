@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    dynamic:
+      primary: db1 #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源。
+      datasource:
+        db1:
+          url: jdbc:mysql://192.168.2.31:30336/db1?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        db2:
+          url: jdbc:postgresql://192.168.2.31:30432/db2?currentSchema=public
+          username: postgre
+          password: 123456
+          driver-class-name: org.postgresql.Driver
+
+## 指定 Mapper 对应的 xml 文件目录地址
+mybatis:
+  mapper-locations: classpath:mappers/db1/*.xml,classpath*:/mappers/db2/*.xml
