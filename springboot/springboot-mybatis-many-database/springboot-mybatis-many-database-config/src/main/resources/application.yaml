@@ -1,11 +1,11 @@
 datasource:
   db1:
     driverClassName: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://192.168.2.31:30336/db1?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/db1?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
   db2:
     driverClassName: org.postgresql.Driver
-    jdbc-url: jdbc:postgresql://192.168.2.31:30432/db2?currentSchema=public
+    jdbc-url: jdbc:postgresql://127.0.0.1:5432/db2?currentSchema=public
     username: postgre
     password: 123456
