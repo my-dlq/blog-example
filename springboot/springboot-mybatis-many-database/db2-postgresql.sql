@@ -1,24 +1,18 @@
-CREATE DATABASE db2
-    WITH 
-    OWNER = postgre
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'en_US.utf8'
-    LC_CTYPE = 'en_US.utf8'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-
-CREATE TABLE public.t_account (
-    id bigint NOT NULL,
-    username text COLLATE pg_catalog."default" NOT NULL,
-    password text COLLATE pg_catalog."default" NOT NULL,
-    create_time timestamp without time zone NOT NULL,
-    update_time timestamp without time zone NOT NULL,
-    CONSTRAINT account_pkey PRIMARY KEY (id)
+CREATE TABLE "public"."t_account" (
+  "id" int8 NOT NULL,
+  "username" varchar COLLATE "pg_catalog"."default" NOT NULL,
+  "password" varchar COLLATE "pg_catalog"."default" NOT NULL,
+  "create_time" timestamp(6) NOT NULL,
+  "update_time" timestamp(6) NOT NULL
 )
+;
 
-TABLESPACE pg_default;
+COMMENT ON COLUMN "public"."t_account"."id" IS '主键';
+COMMENT ON COLUMN "public"."t_account"."username" IS '用户名';
+COMMENT ON COLUMN "public"."t_account"."password" IS '密码';
+COMMENT ON COLUMN "public"."t_account"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."t_account"."update_time" IS '更新时间';
 
-ALTER TABLE public.t_account OWNER to postgre;
+INSERT INTO "public"."t_account" VALUES (1, 'mydlq', '123456', '2021-01-01 00:00:00', '2021-01-01 00:00:00');
 
-INSERT INTO public.t_account(id, username, password, create_time, update_time) 
-VALUES (1, 'mydlq', '123456', '2021-01-01', '2021-01-01');
+ALTER TABLE "public"."t_account" ADD CONSTRAINT "account_pkey" PRIMARY KEY ("id");

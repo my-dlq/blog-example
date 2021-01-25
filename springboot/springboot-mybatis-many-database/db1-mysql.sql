@@ -1,6 +1,3 @@
-CREATE DATABASE db1;
-USE db1;
-
 CREATE TABLE `t_user_info` (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '姓名',
