@@ -90,7 +90,7 @@ spec:
           claimName: redis
       - name: config      
         configMap:
-          name: redis-
+          name: redis-config
       - name: sys
         hostPath: 
           path: /sys
