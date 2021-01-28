@@ -13,3 +13,4 @@ data:
     protected-mode no
     requirepass 123456
     pidfile /data/redis-6379.pid
+    maxmemory 1073741824
