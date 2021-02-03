@@ -22,7 +22,7 @@ public class TransactionExample {
     @Resource
     private MongoTemplate mongoTemplate;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Object transactionTest(){
         // 设置两个用户信息
         User user1 = new User()
