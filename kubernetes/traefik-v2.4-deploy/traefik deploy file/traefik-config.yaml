@@ -1,0 +1,55 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: traefik-config
+data:
+  traefik.yaml: |-
+    ping: ""          
+    serversTransport:
+      insecureSkipVerify: true  
+    api:
+      insecure: true            
+      dashboard: true  
+      debug: false             
+    metrics:
+      prometheus: ""       
+    entryPoints:
+      web:
+        address: ":80"  
+      websecure:
+        address: ":443"      
+    providers:
+      kubernetesCRD: ""        
+      kubernetesIngress: ""
+      kubernetesGateway: ""
+    experimental:
+      kubernetesGateway: true
+    log:
+      filePath: ""            
+      level: error       
+      format: json        
+    accessLog:
+      filePath: ""       
+      format: json             
+      bufferingSize: 0       
+      filters:
+        #statusCodes: ["200"]   
+        retryAttempts: true     
+        minDuration: 20        
+      fields:               
+        defaultMode: keep 
+        names:                  
+          ClientUsername: drop  
+        headers:               
+          defaultMode: keep     
+          names:                
+            User-Agent: redact
+            Authorization: drop
+            Content-Type: keep
+    #tracing:             
+    #  serviceName:               
+    #  zipkin:             
+    #    sameSpan: true        
+    #    id128Bit: true     
+    #    sampleRate: 0.1       
+    #    httpEndpoint: http://localhost:9411/api/v2/spans    

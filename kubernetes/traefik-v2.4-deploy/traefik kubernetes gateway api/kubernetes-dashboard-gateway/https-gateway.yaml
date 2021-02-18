@@ -1,0 +1,24 @@
+apiVersion: networking.x-k8s.io/v1alpha1
+kind: Gateway
+metadata:
+  name: https-gateway
+spec:
+  gatewayClassName: traefik
+  listeners:
+  - protocol: HTTPS
+    port: 443
+    hostname: kubernetes.mydlq.club
+    tls:
+      certificateRef:
+        kind: Secret
+        group: core
+        name: cloud-mydlq-tls
+      routeOverride:
+        certificate: Deny
+    routes:
+      kind: HTTPRoute
+      namespaces:
+        from: All
+      selector:
+        matchLabels:
+          app: traefik

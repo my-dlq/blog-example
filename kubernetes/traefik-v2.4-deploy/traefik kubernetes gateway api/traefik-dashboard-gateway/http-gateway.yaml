@@ -1,0 +1,17 @@
+apiVersion: networking.x-k8s.io/v1alpha1
+kind: Gateway
+metadata: 
+  name: http-gateway
+  namespace: kube-system
+spec: 
+  gatewayClassName: traefik
+  listeners: 
+    - protocol: HTTP
+      port: 80
+      routes: 
+        kind: HTTPRoute
+        namespaces:
+          from: All
+        selector:
+          matchLabels:
+            app: traefik
