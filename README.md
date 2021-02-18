@@ -6,6 +6,8 @@
 - [Traefik Ingress V2.0 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.0-deploy)
 - [Traefik Ingress V2.1 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.1-deploy)
 - [Traefik Ingress V2.2 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.2-deploy)
+- [Traefik Ingress V2.3 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.3-deploy)
+- [Traefik Ingress V2.4 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/traefik-v2.4-deploy)
 - [Prometheus Operator 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/prometheus-operator)
 - [Kubernetes 部署 Gitlab 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-gitlab)
 - [Kubernetes 部署 Nacos 集群部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/nacos-deploy)
