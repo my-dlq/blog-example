@@ -58,6 +58,7 @@
 - [SpringBoot 多种读取配置文件参数的方式示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-read-config-example)
 - [SpringBoot 使用 Redisson 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redisson-lock-example)
 - [SpringBoot 使用 Zookeeper 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-zookeeper-lock-example)
+- [SpringBoot 使用 Springfox Swagger 3.0 调试接口](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-v3-example)
 - [SpringBoot 使用 spring-data-redis 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-data-redis-lock-example)
 - [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-kafka)
 - [SpringBoot 使用 SpringCache 操作 Redis 进行缓存示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-cache-example)
