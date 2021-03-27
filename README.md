@@ -77,3 +77,9 @@
 - [Kubernetes 环境 SpringCloud 链路追踪、Zipkin 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-sleuth-demo)
 - [SpringCloud Kubernetes Discovery 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-discovery-demo)
 - [SpringCloud Kubernetes Config 示例](https://github.com/my-dlq/blog-example/tree/master/springcloud/springcloud-kubernetes/springcloud-kubernetes-config-demo)
+
+### 公众号
+
+欢迎关注我的公众号"小豆丁技术栈"关注最新技术动态
+
+![](https://mydlq-club.oss-cn-beijing.aliyuncs.com/images/qrcode-1.png?x-oss-process=style/my)
