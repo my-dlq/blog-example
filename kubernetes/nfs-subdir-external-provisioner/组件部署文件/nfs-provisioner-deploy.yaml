@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-client-provisioner
+  labels:
+    app: nfs-client-provisioner
+spec:
+  replicas: 1
+  strategy: 
+    type: Recreate                   ## 设置升级策略为删除再创建(默认为滚动更新)
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+      - name: nfs-client-provisioner
+        #image: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.0
+        image: registry.cn-beijing.aliyuncs.com/mydlq/nfs-subdir-external-provisioner:v4.0.0
+        volumeMounts:
+        - name: nfs-client-root
+          mountPath: /persistentvolumes
+        env:
+        - name: PROVISIONER_NAME     ## Provisioner的名称,以后设置的storageclass要和这个保持一致
+          value: nfs-client 
+        - name: NFS_SERVER           ## NFS服务器地址,需和valumes参数中配置的保持一致
+          value: 192.168.2.11
+        - name: NFS_PATH             ## NFS服务器数据存储目录,需和valumes参数中配置的保持一致
+          value: /nfs/data
+      volumes:
+      - name: nfs-client-root
+        nfs:
+          server: 192.168.2.11       ## NFS服务器地址
+          path: /nfs/data            ## NFS服务器数据存储目录
