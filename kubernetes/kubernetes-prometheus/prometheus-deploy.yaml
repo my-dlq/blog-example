@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  labels:
+    k8s-app: prometheus
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 9090
+    targetPort: 9090
+    nodePort: 30900
+  selector:
+    k8s-app: prometheus
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  labels:
+    k8s-app: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: prometheus
+  template:
+    metadata:
+      labels:
+        k8s-app: prometheus
+    spec:
+      serviceAccountName: prometheus
+      containers:
+      - name: prometheus
+        image: prom/prometheus:v2.26.0
+        ports:
+        - name: http
+          containerPort: 9090
+        securityContext:
+          runAsUser: 65534
+          privileged: true
+        command:
+        - "/bin/prometheus"
+        args:
+        - "--config.file=/etc/prometheus/prometheus.yml"
+        - "--web.enable-lifecycle"
+        - "--storage.tsdb.path=/prometheus"
+        - "--storage.tsdb.retention.time=10d"
+        - "--web.console.libraries=/etc/prometheus/console_libraries"
+        - "--web.console.templates=/etc/prometheus/consoles"
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 1024Mi
+          requests:
+            cpu: 1000m
+            memory: 512Mi
+        readinessProbe:
+          httpGet:
+            path: /-/ready
+            port: 9090
+          initialDelaySeconds: 5
+          timeoutSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /-/healthy
+            port: 9090
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+        - name: data
+          mountPath: /prometheus
+          subPath: prometheus
+        - name: config
+          mountPath: /etc/prometheus
+      - name: configmap-reload
+        image: jimmidyson/configmap-reload:v0.5.0
+        args:
+        - "--volume-dir=/etc/config"
+        - "--webhook-url=http://localhost:9090/-/reload"
+        resources:
+          limits:
+            cpu: 10m
+            memory: 10Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        volumeMounts:
+        - name: config
+          mountPath: /etc/config
+          readOnly: true
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: prometheus
+      - name: config
+        configMap:
+          name: prometheus-config
