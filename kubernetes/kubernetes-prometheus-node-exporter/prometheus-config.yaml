@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval:     15s
+      evaluation_interval: 15s
+      external_labels:
+        cluster: "kubernetes"
+
+    scrape_configs:
+    ###################### Node Exporter ######################
+    - job_name: 'node-exporter'
+      kubernetes_sd_configs:
+      - role: node
+      relabel_configs:
+      - action: replace
+        source_labels: [__address__]
+        regex: '(.*):10250'
+        replacement: '${1}:9100'
+        target_label: __address__
