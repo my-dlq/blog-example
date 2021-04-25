@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: grafana
+  labels:
+    k8s-app: grafana
+spec:
+  capacity:          
+    storage: 5Gi
+  accessModes:       
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: grafana
+  mountOptions:
+    - hard
+    - nfsvers=4.1    
+  nfs: 
+    path: /nfs/grafana     ## NFS 服务器目录
+    server: 192.168.2.31   ## NFS 服务器地址
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana
+  labels:
+    k8s-app: grafana  
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: grafana
+  resources:
+    requests:
+      storage: 5Gi
+  selector:
+    matchLabels:
+      k8s-app: grafana
