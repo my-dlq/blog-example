@@ -1,6 +1,6 @@
 package mydlq.club.controller;
 
-import info.aspire.entity.UserInfo;
+import mydlq.club.entity.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
