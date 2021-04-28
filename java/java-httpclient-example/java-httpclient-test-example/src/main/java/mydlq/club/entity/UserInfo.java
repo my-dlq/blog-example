@@ -1,4 +1,4 @@
-package info.aspire.entity;
+package mydlq.club.entity;
 
 import lombok.Data;
 

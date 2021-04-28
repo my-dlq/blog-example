@@ -1,4 +1,4 @@
-package info.aspire.controller;
+package mydlq.club.controller;
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;

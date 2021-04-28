@@ -1,4 +1,4 @@
-package info.aspire.controller;
+package mydlq.club.controller;
 
 import info.aspire.entity.UserInfo;
 import lombok.extern.slf4j.Slf4j;
