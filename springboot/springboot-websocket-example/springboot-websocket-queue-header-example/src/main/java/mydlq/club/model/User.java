@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * 用户实体对象
  *
- * @author dingliqiang
+ * @author mydlq
  */
 @Data
 @AllArgsConstructor
