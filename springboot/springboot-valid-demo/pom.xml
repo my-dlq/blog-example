@@ -8,7 +8,7 @@
 		<version>2.2.1.RELEASE</version>
 	</parent>
 
-	<groupId>com.aspire</groupId>
+	<groupId>mydlq.club</groupId>
 	<artifactId>springboot-valid-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-valid-demo</name>
