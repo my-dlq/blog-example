@@ -1,0 +1,67 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: prometheus-config
+  namespace: kube-system
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval:     15s
+      evaluation_interval: 15s
+      external_labels:
+        cluster: "kubernetes"
+    scrape_configs:
+    ############################ kubernetes-cadvisor ##############################
+    - job_name: 'kubernetes-cadvisor'
+      scheme: https
+      metrics_path: /metrics/cadvisor
+      tls_config:
+        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+      kubernetes_sd_configs:
+      - role: node
+      relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)
+      - target_label: __address__
+        replacement: kubernetes.default.svc:443
+      - source_labels: [__meta_kubernetes_node_name]
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      metric_relabel_configs:
+      - source_labels: [instance]
+        separator: ;
+        regex: (.+)
+        target_label: node
+        replacement: $1
+        action: replace
+      - source_labels: [pod_name]
+        separator: ;
+        regex: (.+)
+        target_label: pod
+        replacement: $1
+        action: replace
+      - source_labels: [container_name]
+        separator: ;
+        regex: (.+)
+        target_label: container
+        replacement: $1
+        action: replace
+    ############################ kube-state-metrics ##############################
+    - job_name: "kube-state-metrics"
+      kubernetes_sd_configs:
+      - role: endpoints
+        namespaces:
+          names: ["kube-system"]
+      relabel_configs:
+      - action: keep
+        source_labels: [__meta_kubernetes_service_label_app_kubernetes_io_name]
+        regex: kube-state-metrics
+      - action: labelmap
+        regex: __meta_kubernetes_service_label_(.+)
+      - action: replace
+        source_labels: [__meta_kubernetes_namespace]
+        target_label: k8s_namespace
+      - action: replace
+        source_labels: [__meta_kubernetes_service_name]
+        target_label: k8s_sname    

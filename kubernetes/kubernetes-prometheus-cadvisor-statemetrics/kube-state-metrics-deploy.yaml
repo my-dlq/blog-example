@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-state-metrics
+  labels:
+    k8s-app: kube-state-metrics
+    app.kubernetes.io/name: kube-state-metrics   ##不能删除此注解,该注解用于Prometheus自动发现
+spec:
+  type: ClusterIP
+  ports:
+  - name: http-metrics
+    port: 8080
+    targetPort: 8080
+  - name: telemetry
+    port: 8081
+    targetPort: 8081
+  selector:
+    k8s-app: kube-state-metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-state-metrics
+  labels:
+    k8s-app: kube-state-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: kube-state-metrics
+  template:
+    metadata:
+      labels:
+        k8s-app: kube-state-metrics
+    spec:
+      serviceAccountName: kube-state-metrics
+      containers:
+      - name: kube-state-metrics
+        image: bitnami/kube-state-metrics:2.0.0
+        securityContext:
+          runAsUser: 65534
+        ports:
+        - name: http-metrics    ##用于公开kubernetes的指标数据的端口
+          containerPort: 8080
+        - name: telemetry       ##用于公开自身kube-state-metrics的指标数据的端口
+          containerPort: 8081
+        resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
