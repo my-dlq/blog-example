@@ -24,9 +24,10 @@
 - [Kubernetes 部署 Mysql 数据库(单节点)部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-mysql)
 - [Kubeadm 部署 Kubernetes 集群 1.16.3 配置文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-deploy-1.16.3)
 - [Kubernetes 创建用户用的 Dashboard RBAC 权限示例文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-dashboard-rbac)
-- [Kubernetes 部署 Node Exporter 监控 Kubernetes 集群部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-prometheus-node-exporter)
+- [Kubernetes 部署 Node Exporter 监控 Kubernetes 集群节点部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-prometheus-node-exporter)
 - [Kubernetes 部署 NFS Subdir External Provisioner 的示例文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/nfs-subdir-external-provisioner)
 - [Kubernetes 部署 Kafka & Zookeeper & Kafka-Manager 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kafka-zookeeper-deploy)
+- [Kubernetes 部署 KubeStateMetrics+cAdvisor 监控 Kubernetes 集群服务部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-prometheus-cadvisor-statemetrics)
 
 ### Jenkins
 
