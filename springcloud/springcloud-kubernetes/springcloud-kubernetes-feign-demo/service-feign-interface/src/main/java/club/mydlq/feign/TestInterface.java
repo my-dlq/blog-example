@@ -8,7 +8,7 @@ public interface TestInterface {
      * 获取测试信息
      * @return
      */
-    @GetMapping()
+    @GetMapping("/")
     public String getInfo();
 
 }
