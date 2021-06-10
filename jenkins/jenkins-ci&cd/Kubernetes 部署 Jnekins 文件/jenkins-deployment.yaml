@@ -54,14 +54,8 @@ spec:
             memory: 2Gi
             cpu: "2000m"
         env:
-        - name: LIMITS_MEMORY
-          valueFrom:
-            resourceFieldRef:
-              resource: limits.memory
-              divisor: 1Mi
         - name: "JAVA_OPTS"                 #设置变量，指定时区和 jenkins slave 执行者设置
           value: " 
-                   -Xmx$(LIMITS_MEMORY)m 
                    -XshowSettings:vm 
                    -Dhudson.slaves.NodeProvisioner.initialDelay=0
                    -Dhudson.slaves.NodeProvisioner.MARGIN=50
