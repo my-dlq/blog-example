@@ -8,11 +8,11 @@ spec:
   type: NodePort
   ports:
   - name: http
-    port: 8080                      #服务端口
+    port: 8080                    #服务端口
     targetPort: 8080
     nodePort: 32001               #NodePort方式暴露 Jenkins 端口
   - name: jnlp
-    port: 50000                     #代理端口
+    port: 50000                   #代理端口
     targetPort: 50000
     nodePort: 32002
   selector:
@@ -67,6 +67,9 @@ spec:
                    -Dhudson.slaves.NodeProvisioner.MARGIN=50
                    -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
                    -Duser.timezone=Asia/Shanghai
+                   -Djava.awt.headless=true 
+                   -XX:MaxRAMPercentage=80.0 
+                   -XX:InitialRAMPercentage=80.0
                  "    
         - name: "JENKINS_OPTS"
           value: "--prefix=/jenkins"         #设置路径前缀加上 Jenkins
