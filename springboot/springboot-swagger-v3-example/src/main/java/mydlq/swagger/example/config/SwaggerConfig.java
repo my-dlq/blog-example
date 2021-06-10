@@ -1,5 +1,6 @@
 package mydlq.swagger.example.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -18,11 +19,16 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
 
+    @Value("${springfox.documentation.swagger-ui.enabled}")
+    private boolean enabled;
+
     @Bean
     public Docket createRestApi() {
         return new Docket(
                 // 设置使用 OpenApi 3.0 规范
                 DocumentationType.OAS_30)
+                // 是否开启 Swagger
+                .enable(enabled)
                 // 配置项目基本信息
                 .apiInfo(apiInfo())
                 // 设置项目组名

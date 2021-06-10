@@ -7,4 +7,5 @@ spring:
 
 springfox:
   documentation:
-    enabled: true
+    swagger-ui:
+      enabled: true
