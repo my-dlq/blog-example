@@ -54,6 +54,13 @@ spec:
           value: "admin"
         - name: GF_SECURITY_ADMIN_PASSWORD
           value: "admin"
+        resources:
+          limits:
+            cpu: '2'
+            memory: 1Gi
+          requests:
+            cpu: 1
+            memory: 512Mi
         readinessProbe:          
           failureThreshold: 10
           httpGet:
