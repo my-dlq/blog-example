@@ -1,4 +1,4 @@
-package mydlq.swagger.example;
+package mydlq.club.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package mydlq.swagger.example.service.factory;
+package mydlq.club.example.service.factory;
 
 import java.util.Map;
 import javax.annotation.Resource;
@@ -14,6 +14,9 @@ import mydlq.club.example.service.ProductService;
 @Component
 public class ProductStrategyFactory {
 
+    /**
+     * 使用依赖注入引入 ProductService 产品实现类,以 Bean 名称作为 Map 的 Key,以 Bean 实现类作为 Value
+     */
     @Resource
     Map<String, ProductService> strategyMap = new ConcurrentHashMap<>(2);
 
@@ -25,12 +28,7 @@ public class ProductStrategyFactory {
      */
     public ProductService getProductStrategy(String productName) {
         // 根据从 productName 从 strategyMap 集合中查询对应的产品下单策略
-        ProductService product = strategyMap.get(productName);
-        // 验证是否根据输入的产品名称查找到对应的产品下单策略，如果没有则抛出异常
-        if (product == null) {
-            throw new RuntimeException("没有发现对应的产品处理策略");
-        }
-        return product;
+        return strategyMap.get(productName);
     }
 
 }

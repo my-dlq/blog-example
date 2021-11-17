@@ -1,4 +1,4 @@
-package mydlq.swagger.example.service.impl;
+package mydlq.club.example.service.impl;
 
 import mydlq.club.example.service.ProductService;
 import org.springframework.stereotype.Service;

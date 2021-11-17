@@ -1,6 +1,7 @@
-package mydlq.swagger.example.controller;
+package mydlq.club.example.controller;
 
-import mydlq.swagger.example.service.factory.ProductStrategyFactory;
+import mydlq.club.example.service.ProductService;
+import mydlq.club.example.service.factory.ProductStrategyFactory;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
@@ -15,9 +16,16 @@ public class ProductController {
     @Resource
     private ProductStrategyFactory factoryForStrategy;
 
+    /**
+     * 执行下单订购产品
+     *
+     * @param type 产品类型(策略)
+     * @return 订购结果
+     */
     @PostMapping("/order")
     public String order(@RequestParam(value = "type") String type) {
-        return factoryForStrategy.getProductStrategy(type).orderingProduct();
+        ProductService productService = factoryForStrategy.getProductStrategy(type);
+        return productService != null ? productService.orderingProduct() : "没有发现对应的产品处理策略";
     }
 
 }
