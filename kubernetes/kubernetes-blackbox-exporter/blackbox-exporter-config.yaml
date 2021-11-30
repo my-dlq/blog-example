@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blackbox-exporter
+  labels:
+    app: blackbox-exporter
+data:
+  blackbox.yml: |-
+    modules:
+      ## ----------- DNS 检测配置 -----------
+      dns_tcp:  
+        prober: dns
+        dns:
+          transport_protocol: "tcp"
+          preferred_ip_protocol: "ip4"
+          query_name: "kubernetes.default.svc.cluster.local" # 用于检测域名可用的网址
+          query_type: "A" 
+      ## ----------- TCP 检测模块配置 -----------
+      tcp_connect:
+        prober: tcp
+        timeout: 5s
+      ## ----------- ICMP 检测配置 -----------
+      ping:
+        prober: icmp
+        timeout: 5s
+        icmp:
+          preferred_ip_protocol: "ip4"
+      ## ----------- HTTP GET 2xx 检测模块配置 -----------
+      http_get_2xx:  
+        prober: http
+        timeout: 10s
+        http:
+          method: GET
+          preferred_ip_protocol: "ip4"
+          valid_http_versions: ["HTTP/1.1","HTTP/2"]
+          valid_status_codes: [200]           # 验证的HTTP状态码,默认为2xx
+          no_follow_redirects: false          # 是否不跟随重定向
+      ## ----------- HTTP GET 3xx 检测模块配置 -----------
+      http_get_3xx:  
+        prober: http
+        timeout: 10s
+        http:
+          method: GET
+          preferred_ip_protocol: "ip4"
+          valid_http_versions: ["HTTP/1.1","HTTP/2"]
+          valid_status_codes: [301,302,304,305,306,307]  # 验证的HTTP状态码,默认为2xx
+          no_follow_redirects: false                     # 是否不跟随重定向
+      ## ----------- HTTP POST 监测模块 -----------
+      http_post_2xx: 
+        prober: http
+        timeout: 10s
+        http:
+          method: POST
+          preferred_ip_protocol: "ip4"
+          valid_http_versions: ["HTTP/1.1", "HTTP/2"]
+          #headers:                             # HTTP头设置
+          #  Content-Type: application/json
+          #body: '{}'                           # 请求体设置 
