@@ -1,0 +1,6 @@
+## 基础设置
+spring:
+  application:
+    name: springboot-log4j2-example
+
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+
+    <Properties>
+        <!-- ===== 读取 SprigBoot 参数 ===== -->
+        <property name="applicationName" value="${spring:spring.application.name}"/>
+
+        <!-- 配置日志文件、日志归档文件命名 -->
+        <property name="FILE_PATH" value="/logs/${applicationName}.log"/>
+        <property name="FILE_PATH_ARCHIVE" value="/logs/${applicationName}_%d{yyyy-MM-dd}.%i.log.gz"/>
+
+        <!-- 配置日志输出模式 -->
+        <property name="LOG_PATTERN_CONSOLE"
+                  value="%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n%xwEx"/>
+        <property name="LOG_PATTERN_FILE"
+                  value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%15.15t] %-40.40c{1.}: %m%n%throwable"/>
+    </Properties>
+
+    <appenders>
+        <!--CONSOLE-->
+        <console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${applicationName}${LOG_PATTERN_CONSOLE}" charset="UTF-8"/>
+        </console>
+
+        <!--FILE-->
+        <RollingFile name="file_info" fileName="${FILE_PATH}" filePattern="${FILE_PATH_ARCHIVE}">
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="${LOG_PATTERN_FILE}" charset="UTF-8"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <Loggers>
+        <Root level="INFO" additivity="false" includeLocation="true">
+            <!--控制台-->
+            <AppenderRef ref="console"/>
+            <!--文件-->
+            <AppenderRef ref="file_info"/>
+        </Root>
+    </Loggers>
+
+</configuration>
