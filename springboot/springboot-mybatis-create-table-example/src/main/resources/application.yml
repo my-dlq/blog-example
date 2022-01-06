@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: springboot-mybatis-create-table-example
+  # 数据库配置
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true
+    hikari:
+      pool-name: DatebookHikariCP
+      minimum-idle: 5
+      maximum-pool-size: 15
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      username: root
+      password: 123456
+
+# 指定 mapper 的 xml 文件位置
+mybatis:
+  mapper-locations: classpath:mappers/*.xml

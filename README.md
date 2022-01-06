@@ -64,6 +64,7 @@
 - [SpringBoot 多种读取配置文件参数的方式示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-read-config-example)
 - [SpringBoot 使用 Redisson 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redisson-lock-example)
 - [SpringBoot 使用 Zookeeper 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-zookeeper-lock-example)
+- [SpringBoot 结合 Mybatis 实现创建数据库表示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-mybatis-create-table-example)
 - [SpringBoot 策略+工厂模式解决大量 Else If 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-strategy-factory-pattern)
 - [SpringBoot 使用 Springfox Swagger 3.0 调试接口](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-v3-example)
 - [SpringBoot 使用 spring-data-redis 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-data-redis-lock-example)
@@ -74,7 +75,6 @@
 - [SpringBoot 解决使用 Log4j2 引入 SpringBoot 参数示例项目](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-log4j2-example)
 - [SpringBoot 中使用 Fastjson 替换默认 Json 组件 Jackson 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-fastjson-example)
 - [SpringBoot 使用 @Valid + Exception 全局异常处理来接口参数效验示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-valid-demo)
-
 
 ### SpringCloud
 
