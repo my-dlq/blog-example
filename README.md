@@ -14,6 +14,7 @@
 - [Kubernetes 部署 Grafana 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-grafana)
 - [Kubernetes 部署 SonarQube 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/sonarqube-deploy)
 - [Kubernetes 部署 Prometheus 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-prometheus)
+- [Kubernetes 部署 AlertManager 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-alertmanager)
 - [Kubernetes 部署 Metrics Server 部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-metrics-server)
 - [Kubernetes 使用 CronJob 进行数据备份示例](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-cronjob-example)
 - [Kubernetes 部署 DashBoard 2.0.0 的部署文件](https://github.com/my-dlq/blog-example/tree/master/kubernetes/kubernetes-dashboard2.0.0-deploy)
