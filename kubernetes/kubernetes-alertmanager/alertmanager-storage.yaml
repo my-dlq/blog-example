@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: alertmanager
+  labels:
+    k8s-app: alertmanager
+spec:
+  capacity:          
+    storage: 2Gi
+  accessModes:       
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-storage
+  mountOptions:
+    - hard
+    - nfsvers=4.1    
+  nfs: 
+    path: /nfs/alertmanager  
+    server: 192.168.2.11
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: alertmanager
+  labels:
+    k8s-app: alertmanager  
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-storage
+  resources:
+    requests:
+      storage: 2Gi
+  selector:
+    matchLabels:
+      k8s-app: alertmanager

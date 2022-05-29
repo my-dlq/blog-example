@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+data:
+  alertmanager.yml: |-
+    global:
+      ## 持续多少时间没有触发告警,则认为处于告警问题已经解决状态的时间
+      resolve_timeout: 5m
+      ## 配置邮件发送信息
+      smtp_smarthost: '邮箱服务器,如163邮箱为smtp.163.com:25'
+      smtp_from: '发送邮件的账户'
+      smtp_auth_username: '发送邮件的email用户名'
+      smtp_auth_password: '发送邮件的email的TOKEN秘钥'
+      smtp_require_tls: false
+    # 所有报警信息进入后的根路由，用来设置报警的分发策略
+    route:
+      ## 这里的标签列表是接收到报警信息后的重新分组标签,例如接收到的报警信息里面有许多具有 cluster=A 这样的标签,可以根据这些标签,将告警信息批量聚合到一个分组里面中
+      group_by: ['alertname', 'cluster']
+      ## 当一个新的报警分组被创建后,需要等待至少group_wait时间来初始化通知,这种方式可以确保能有足够的时间为同一分组来汇入尽可能多的告警信息,然后将这些汇集的告警信息一次性触发
+      group_wait: 30s
+      ## 当第一个报警发送后，等待 group_interval 时间来发送新的一组报警信息
+      group_interval: 5m
+      ## 如果一个报警信息已经发送成功了,则需要等待 repeat_interval 时间才能重新发送
+      repeat_interval: 5m
+      ## 配置默认的路由规则
+      receiver: default
+      ## 配置子路由规则,如果一个告警没有被任何一个子路由规则匹配，就会使用default配置
+      #routes:
+      #- receiver: webhook
+      #  group_wait: 10s
+      #  match:
+      #    team: node
+    receivers:
+    - name: 'default'
+      email_configs:
+      - to: 'xxxxxx@163.com,即接收告警邮件的邮箱地址,修改成你接收告警邮件的邮箱地址'
+        send_resolved: true

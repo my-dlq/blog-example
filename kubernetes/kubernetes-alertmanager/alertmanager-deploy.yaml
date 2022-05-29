@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alertmanager
+  labels:
+    k8s-app: alertmanager
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 9093
+    targetPort: 9093
+    nodePort: 30903
+  selector:
+    k8s-app: alertmanager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager
+  labels:
+    k8s-app: alertmanager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: alertmanager
+  template:
+    metadata:
+      labels:
+        k8s-app: alertmanager
+    spec:
+      containers:
+      - name: alertmanager
+        image: prom/alertmanager:v0.24.0
+        ports:
+        - name: http
+          containerPort: 9093
+        args:
+        ## 指定容器中AlertManager配置文件存放地址 (Docker容器中的绝对位置)
+        - "--config.file=/etc/alertmanager/alertmanager.yml"
+        ## 指定AlertManager管理界面地址，用于在发生的告警信息中,附加AlertManager告警信息页面地址
+        - "--web.external-url=http://192.168.2.11:30903"  
+        ## 指定监听的地址及端口
+        - '--cluster.advertise-address=0.0.0.0:9093'
+        ## 指定数据存储位置 (Docker容器中的绝对位置)
+        - "--storage.path=/alertmanager"
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 1000m
+            memory: 512Mi
+        readinessProbe:
+          httpGet:
+            path: /-/ready
+            port: 9093
+          initialDelaySeconds: 5
+          timeoutSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /-/healthy
+            port: 9093
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+        - name: data
+          mountPath: /alertmanager 
+        - name: config
+          mountPath: /etc/alertmanager
+      - name: configmap-reload
+        image: jimmidyson/configmap-reload:v0.7.1
+        args:
+        - "--volume-dir=/etc/config"
+        - "--webhook-url=http://localhost:9093/-/reload"
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: config
+          mountPath: /etc/config
+          readOnly: true
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: alertmanager
+      - name: config
+        configMap:
+          name: alertmanager-config
