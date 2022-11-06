@@ -1,0 +1,43 @@
+# 全局配置
+global:
+  ## 在没有报警的情况下声明为已解决的时间
+  resolve_timeout: 5m
+  ## ===配置邮箱===
+  ## 配置邮箱 SMTP 服务器地址和端口；
+  smtp_smarthost: 'smtp.163.com:25'
+  ## 配置发件人邮箱
+  smtp_from: 'xxxxxx@163.com'
+  ## 配置发件人邮箱账户
+  smtp_auth_username: 'xxxxxx@163.com'
+  ## 配置发件人邮箱密码 (这里指的是邮箱授权码，不是登录密码)
+  smtp_auth_password: 'ABCDEFG***'
+  ## 配置是否使用 TLS 加密
+  smtp_require_tls: false
+
+# 自定义邮件通知模板
+templates:
+  - '/etc/alertmanager/*.tmpl'
+
+# 告警路由配置
+route:
+  ## 配置用于分组的标签
+  group_by: ['alertname', 'cluster']
+  ## 配置同一组告警等待时间。
+  ## 用于配置接收到某组中的告警信息后，并不会立即发出告警信息，
+  ## 而是等待指定时间，如果有相同组的告警信息，则一起发送告警
+  group_wait: 30s
+  ## 两组告警的间隔时间
+  group_interval: 10m
+  ## 重复告警的间隔时间，减少相同邮件的发送频率。
+  ## 如果一个报警信息已经发送成功了，等待 repeat_interval 时间来重新发送他们
+  ## 但是如果告警在 resolve_timeout 时间内没有重复发送，表示问题已经解决，则到 repeat_interval 时间后就不会重新发送
+  repeat_interval: 30m
+  ## 配置默认接收者，如果一个报警没有被一个 route 匹配，则发送给默认的接收器
+  receiver: 'email'
+  ## 配置指定组的消息由对应哪个接收者进行处理
+  routes:
+  - receiver: 'email'
+    group_wait: 30s
+    ### 配置匹配标签，只有匹配的标签才会使用当前配置中指定的接收者进行处理
+    match:
+      alertname: email-test

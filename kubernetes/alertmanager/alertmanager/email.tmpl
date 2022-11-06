@@ -1,0 +1,16 @@
+{{ define "email.to" }}xxxxxx@163.com{{ end }}
+{{ define "email.title" }}来自超级小豆丁的测试告警{{ end }}
+{{ define "email.to.html" }}
+{{ range .Alerts }}
+<p>==========<strong>告警通知</strong>==========</p>
+<strong>告警程序:</strong> prometheus_alert<br>
+<strong>告警级别:</strong> {{ .Labels.severity }}<br>
+<strong>告警类型:</strong> {{ .Labels.alertname }}<br>
+<strong>告警实例:</strong> {{ .Labels.instance }}<br>
+<strong>告警信息:</strong> {{ .Annotations.summary }}<br>
+<strong>告警描述:</strong> {{ .Annotations.description }}<br>
+<strong>当前状态:</strong> {{ .Status }}<br>
+<strong>触发时间:</strong> {{ .StartsAt.Format "2006-01-02 15:04:05" }}<br>
+<strong>监控界面地址:</strong> <a href="{{ .GeneratorURL }}">点击跳转</a><br>
+{{ end }}
+{{ end }}

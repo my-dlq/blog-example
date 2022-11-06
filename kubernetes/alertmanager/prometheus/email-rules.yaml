@@ -1,0 +1,13 @@
+groups:
+- name: Instances
+  rules:
+  - alert: InstanceDown
+    expr: up > -1
+    for: 1m
+    labels:
+      severity: page
+      ## 配置用于分组的标签
+      alertname: email-test
+    annotations:
+      description: '{{ $labels.instance }} 实例的 {{ $labels.job }} 任务宕机已经超过 1 分钟.'
+      summary: '实例 {{ $labels.instance }} 宕机'
