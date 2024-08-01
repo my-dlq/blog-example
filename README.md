@@ -71,6 +71,7 @@
 - [SpringBoot 策略+工厂模式解决大量 Else If 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-strategy-factory-pattern)
 - [SpringBoot 使用 Springfox Swagger 3.0 调试接口](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-v3-example)
 - [SpringBoot 使用 spring-data-redis 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-data-redis-lock-example)
+- [SpringBoot 结合 Spring Event 实现事件发布与监听的示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-event-example)
 - [SpringBoot 集成 Spring For Kafka 操作 Kafka 详解示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-kafka)
 - [SpringBoot 使用 SpringCache 操作 Redis 进行缓存示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-redis-cache-example)
 - [SpringBoot 中使用 Gson 替换默认 Json 组件 Jackson 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-gson-example)
