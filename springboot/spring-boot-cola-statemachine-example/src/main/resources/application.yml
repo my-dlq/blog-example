@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: spring-boot-cola-statemachine-example
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai
+    hikari:
+      pool-name: HikariPool
+      minimum-idle: 5
+      maximum-pool-size: 15
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      username: root
+      password: xxxxxx
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

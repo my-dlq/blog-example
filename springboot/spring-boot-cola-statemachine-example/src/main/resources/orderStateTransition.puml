@@ -1,0 +1,8 @@
+@startuml
+CREATED_已创建 --> PENDING_SHIPMENT_待发货 : PAY_支付
+PENDING_SHIPMENT_待发货 --> SHIPPED_已发货 : SHIP_发货
+SHIPPED_已发货 --> RECEIVED_已收货 : RECEIVE_收货
+CREATED_已创建 --> CLOSED_已关闭 : CANCEL_取消
+PENDING_SHIPMENT_待发货 --> CLOSED_已关闭 : CANCEL_取消
+SHIPPED_已发货 --> CLOSED_已关闭 : CANCEL_取消
+@enduml

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.mydlq.operlog.mapper.OperLogMapper">
+
+    <resultMap id="BaseResultMap" type="club.mydlq.operlog.model.OperLogInfo">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="module" column="module" jdbcType="VARCHAR"/>
+        <result property="operDesc" column="oper_desc" jdbcType="VARCHAR"/>
+        <result property="requestUri" column="request_uri" jdbcType="VARCHAR"/>
+        <result property="requestIp" column="request_ip" jdbcType="VARCHAR"/>
+        <result property="requestMethod" column="request_method" jdbcType="VARCHAR"/>
+        <result property="responseResult" column="response_result" jdbcType="VARCHAR"/>
+        <result property="operType" column="oper_type" jdbcType="TINYINT"/>
+        <result property="operStatus" column="oper_status" jdbcType="TINYINT"/>
+        <result property="errorInfo" column="error_info" jdbcType="VARCHAR"/>
+        <result property="operator" column="operator" jdbcType="VARCHAR"/>
+        <result property="operTime" column="oper_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 插入操作日志 -->
+    <insert id="insert" keyColumn="id" keyProperty="id"
+            parameterType="club.mydlq.operlog.model.OperLogInfo"
+            useGeneratedKeys="true">
+        insert into sys_oper_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="module != null">module,</if>
+            <if test="operDesc != null">oper_desc,</if>
+            <if test="requestUri != null">request_uri,</if>
+            <if test="requestIp != null">request_ip,</if>
+            <if test="requestMethod != null">request_method,</if>
+            <if test="requestParam != null">request_param,</if>
+            <if test="responseResult != null">response_result,</if>
+            <if test="operType != null">oper_type,</if>
+            <if test="operStatus != null">oper_status,</if>
+            <if test="errorInfo != null">error_info,</if>
+            <if test="operator != null">operator,</if>
+            <if test="operTime != null">oper_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="module != null">#{module,jdbcType=VARCHAR},</if>
+            <if test="operDesc != null">#{operDesc,jdbcType=VARCHAR},</if>
+            <if test="requestUri != null">#{requestUri,jdbcType=VARCHAR},</if>
+            <if test="requestIp != null">#{requestIp,jdbcType=VARCHAR},</if>
+            <if test="requestMethod != null">#{requestMethod,jdbcType=VARCHAR},</if>
+            <if test="requestParam != null">#{requestParam,jdbcType=VARCHAR},</if>
+            <if test="responseResult != null">#{responseResult,jdbcType=VARCHAR},</if>
+            <if test="operType != null">#{operType,jdbcType=TINYINT},</if>
+            <if test="operStatus != null">#{operStatus,jdbcType=TINYINT},</if>
+            <if test="errorInfo != null">#{errorInfo,jdbcType=VARCHAR},</if>
+            <if test="operator != null">#{operator,jdbcType=VARCHAR},</if>
+            <if test="operTime != null">#{operTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+
+</mapper>

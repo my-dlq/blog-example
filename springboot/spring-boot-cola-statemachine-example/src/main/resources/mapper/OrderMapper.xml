@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.mydlq.example.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="club.mydlq.example.model.Order">
+        <result property="orderId" column="order_id"/>
+        <result property="orderState" column="order_state"/>
+    </resultMap>
+
+    <!--根据ID查询订单信息-->
+    <select id="selectByOrderId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT order_id, order_state
+        FROM `order`
+        WHERE order_id = #{orderId}
+    </select>
+
+    <!--保存订单信息-->
+    <insert id="save" keyColumn="id" keyProperty="id" parameterType="club.mydlq.example.model.Order">
+        INSERT INTO `order`(order_id, order_state)
+        VALUES (#{orderId}, #{orderState})
+    </insert>
+
+    <!--更新订单信息-->
+    <update id="update" parameterType="club.mydlq.example.model.Order">
+        UPDATE `order`
+        SET order_id    = #{orderId},
+            order_state = #{orderState},
+            update_time = NOW()
+        WHERE order_id = #{orderId}
+    </update>
+
+</mapper>
