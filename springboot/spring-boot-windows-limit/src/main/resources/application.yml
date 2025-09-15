@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-boot-windows-limit
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      lettuce:
+        pool:
+          max-active: 100
+          max-idle: 20
+          min-idle: 0
+          max-wait: 2000
