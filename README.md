@@ -70,6 +70,7 @@
 - [SpringBoot 使用 Zookeeper 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-zookeeper-lock-example)
 - [SpringBoot 结合 Mybatis 实现创建数据库表示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-mybatis-create-table-example)
 - [SpringBoot 策略+工厂模式解决大量 Else If 示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-strategy-factory-pattern)
+- [SpringBoot 结合 Redis 实现滑动时间窗口限流示例](https://github.com/my-dlq/blog-example/tree/master/springboot/spring-boot-windows-limit)
 - [SpringBoot 使用 Springfox Swagger 3.0 调试接口](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-swagger-v3-example)
 - [SpringBoot 使用 spring-data-redis 实现分布式锁示例](https://github.com/my-dlq/blog-example/tree/master/springboot/springboot-data-redis-lock-example)
 - [SpringBoot 结合 Cola StateMachine 框架实现状态机示例](https://github.com/my-dlq/blog-example/tree/master/springboot/spring-boot-cola-statemachine-example)
